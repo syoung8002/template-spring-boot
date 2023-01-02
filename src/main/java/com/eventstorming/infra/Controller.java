@@ -76,9 +76,9 @@ public class {{ namePascalCase }}Controller {
             method = RequestMethod.{{controllerInfo.method}},
             produces = "application/json;charset=UTF-8")
     public {{../namePascalCase}} {{nameCamelCase}}(HttpServletRequest request, HttpServletResponse response, 
-        {{#if (checkField fieldDescriptors)}}@RequestBody {{aggregate.namePascalCase}} {{aggregate.nameCamelCase}}{{/if}}) throws Exception {
+        {{#if fieldDescriptors}}@RequestBody {{aggregate.namePascalCase}} {{aggregate.nameCamelCase}}{{/if}}) throws Exception {
             System.out.println("##### /{{aggregate.nameCamelCase}}/{{nameCamelCase}}  called #####");
-            {{aggregate.nameCamelCase}}.{{nameCamelCase}}({{#if (checkField fieldDescriptors)}}{{nameCamelCase}}command{{/if}});
+            {{aggregate.nameCamelCase}}.{{nameCamelCase}}({{#if fieldDescriptors}}{{nameCamelCase}}command{{/if}});
             {{aggregate.nameCamelCase}}Repository.save({{aggregate.nameCamelCase}});
             return {{aggregate.nameCamelCase}};
     }
