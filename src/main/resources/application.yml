@@ -55,8 +55,7 @@ logging:
 
 {{#checkCommandRelation relationCommandInfo}}
 api:
-  url:
-{{#setApiUrl relationCommandInfo true}}{{/setApiUrl}}
+  url: {{#setApiUrl relationCommandInfo true}}{{/setApiUrl}}
 {{/checkCommandRelation}}
 
 server:
@@ -93,8 +92,7 @@ spring:
 
 {{#checkCommandRelation relationCommandInfo}}
 api:
-  url:
-{{#setApiUrl relationCommandInfo false}}{{/setApiUrl}}
+  url: {{#setApiUrl relationCommandInfo false}}{{/setApiUrl}}
 {{/checkCommandRelation}}
 
 
@@ -136,14 +134,13 @@ window.$HandleBars.registerHelper('checkCommandRelation', function (relationComm
 
 window.$HandleBars.registerHelper('setApiUrl', function (relationCommandInfo, isPortGen) {
   var text = "";
+
   relationCommandInfo.forEach(function(item) {
     if(!text.includes(item.commandValue.boundedContext.name)) {
-      // text += "    " + item.commandValue.boundedContext.name + ": " + item.commandValue.boundedContext.name;
-      text += "    " + item.commandValue.boundedContext.name + ": " + "localhost";
       if(isPortGen) {
-        text += ":" + item.commandValue.boundedContext.portGenerated + "\n";
+        text += "localhost:" + item.commandValue.boundedContext.portGenerated + "\n";
       } else {
-        text += ":8080\n";
+        text += item.commandValue.boundedContext.name + ":8080\n";
       }
     }
   })
