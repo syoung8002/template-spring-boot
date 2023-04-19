@@ -1,4 +1,4 @@
-path: /src/main/java/com/example/template
+path: /src/main/java/{{options.package}}
 ---
 package {{options.package}};
 {{#if (isSelectedSecurity selectedSecurity)}}
