@@ -55,7 +55,7 @@ logging:
 
 {{#checkCommandRelation relationCommandInfo}}
 api:
-  url: {{#setApiUrl relationCommandInfo true}}{{/setApiUrl}}
+  url: {{#setApiUrl relationCommandInfo false}}{{/setApiUrl}}
 {{/checkCommandRelation}}
 
 server:
