@@ -36,4 +36,5 @@ services:
     volumes:
       - ./{{name}}:/usr/src
       - ./maven-repo:/root/.m2
+      
   {{/boundedContexts}}
