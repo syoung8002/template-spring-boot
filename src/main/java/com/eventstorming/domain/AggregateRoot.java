@@ -107,6 +107,9 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
     {{^isRestRepository}}
 //<<< Clean Arch / Port Method
     public void {{nameCamelCase}}({{#if (has fieldDescriptors)}}{{namePascalCase}}Command {{nameCamelCase}}Command{{/if}}){
+        
+        //implement business logic here:
+        
         {{#triggerByCommand}}
         {{eventValue.namePascalCase}} {{eventValue.nameCamelCase}} = new {{eventValue.namePascalCase}}(this);
         {{eventValue.nameCamelCase}}.publishAfterCommit();
@@ -133,6 +136,8 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
     {{#relationEventInfo}}
 //<<< Clean Arch / Port Method
     public static void {{../nameCamelCase}}({{eventValue.namePascalCase}} {{eventValue.nameCamelCase}}){
+        
+        //implement business logic here:
 
         /** Example 1:  new item 
         {{../../namePascalCase}} {{../../nameCamelCase}} = new {{../../namePascalCase}}();
