@@ -36,7 +36,7 @@ mvn spring-boot:run
 - {{name}}
 ```
 {{#aggregates}}
- http :8088/{{namePlural}} {{#aggregateRoot.fieldDescriptors}}{{name}}="{{name}}" {{/aggregateRoot.fieldDescriptors}}
+ http :8088/{{namePlural}} {{#aggregateRoot.fieldDescriptors}}{{nameCamelCase}}="{{name}}" {{/aggregateRoot.fieldDescriptors}}
 {{/aggregates}}
 ```
 {{/boundedContexts}}
