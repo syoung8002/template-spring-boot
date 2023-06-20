@@ -60,6 +60,9 @@ fileName: App.vue
                         color="deep-purple lighten-2"
                         style="font-weight:700;"
                     >
+
+                        <v-icon icon="md:{{uiStyle.icon}}"></v-icon>
+
                         {{namePascalCase}}
                     </v-list-item>
 
