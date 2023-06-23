@@ -62,7 +62,7 @@ export default new Router({
 <function>
     window.$HandleBars.registerHelper('layoutPascalCase', function (layout) {
         let layoutPas = layout.toLowerCase();
-        layoutPas = layoutPas.charAt(0).toUpperCase();
+        layoutPas = layoutPas.replace(/^[a-z]/, char => char.toUpperCase());
         try{
             if(layout=='CARD'){
                 return layoutPas+'s'
