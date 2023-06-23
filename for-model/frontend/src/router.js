@@ -9,7 +9,11 @@ Vue.use(Router);
 
 {{#boundedContexts}}
     {{#aggregates}}
+        {{#if uiStyle.layout}}
+import {{namePascalCase}}Manager from "./components/listers/{{namePascalCase}}{{layoutPascalCase uiStyle.layout}}"
+        {{else}}
 import {{namePascalCase}}Manager from "./components/listers/{{namePascalCase}}Cards"
+        {{/if}}
 import {{namePascalCase}}Detail from "./components/listers/{{namePascalCase}}Detail"
     {{/aggregates}}
 
@@ -54,3 +58,19 @@ export default new Router({
 
     ]
 })
+
+<function>
+    window.$HandleBars.registerHelper('layoutPascalCase', function (layout) {
+        let layoutPas = str.replace(/^[a-z]/, char => char.toUpperCase());
+        
+        if(layout=='CARD'){
+            return layoutPas+'s'
+        } else if(layout=='LIST'){
+            return layoutPas
+        } else if(layout=='TABLE'){
+            return layoutPas
+        } else{
+            return layoutPas
+        }
+    })
+</function>
