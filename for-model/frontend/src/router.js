@@ -66,10 +66,10 @@ export default new Router({
         try{
             if(layout=='CARD'){
                 return layoutPas+'s'
-            } else if(layout=='LIST'){
-                return layoutPas
-            } else if(layout=='TABLE'){
-                return layoutPas
+            } else if(layout=='LIST-ITEM'){
+                return 'List'
+            } else if(layout=='GRID'){
+                return 'Table'
             } else{
                 return layoutPas
             }
