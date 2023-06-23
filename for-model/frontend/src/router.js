@@ -61,16 +61,19 @@ export default new Router({
 
 <function>
     window.$HandleBars.registerHelper('layoutPascalCase', function (layout) {
-        let layoutPas = str.replace(/^[a-z]/, char => char.toUpperCase());
-        
-        if(layout=='CARD'){
-            return layoutPas+'s'
-        } else if(layout=='LIST'){
-            return layoutPas
-        } else if(layout=='TABLE'){
-            return layoutPas
-        } else{
-            return layoutPas
+        let layoutPas = layout.replace(/^[a-z]/, char => char.toUpperCase());
+        try{
+            if(layout=='CARD'){
+                return layoutPas+'s'
+            } else if(layout=='LIST'){
+                return layoutPas
+            } else if(layout=='TABLE'){
+                return layoutPas
+            } else{
+                return layoutPas
+            }
+        }catch(e){
+            console.log(e);
         }
     })
 </function>
