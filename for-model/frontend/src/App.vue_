@@ -57,7 +57,7 @@ fileName: App.vue
                         key="{{namePlural}}"
                         to="/{{namePlural}}"
                         @click="changeUrl()"
-                        color="{{uiStyle.palette.primary.colorCode}}"
+                        color="{{uiStyle.palette.color.primary.colorCode}}"
                         style="font-weight:700;"
                     >
                         {{namePascalCase}}
@@ -71,7 +71,7 @@ fileName: App.vue
                         key="{{namePlural}}"
                         to="{{namePlural}}"
                         @click="changeUrl()"
-                        color="{{uiStyle.palette.primary.colorCode}}"
+                        color="{{uiStyle.palette.color.primary.colorCode}}"
                         style="font-weight:700;"
                     >
                         {{namePascalCase}}
