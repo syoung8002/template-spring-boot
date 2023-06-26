@@ -283,6 +283,7 @@ export default {
   	});
 
 	window.$HandleBars.registerHelper('uiStylePalette', function (palette, keyword) {
+		console.log(palette);
 		return palette.colors.keyword;
   	});
 </function>
