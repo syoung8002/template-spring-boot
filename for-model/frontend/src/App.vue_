@@ -278,11 +278,11 @@ export default {
 
 			return;
 		} catch(e){
-		console.log(e)
+			console.log(e)
 		}
   	});
 
-	window.$HandleBars.registerHelper('uiStylePalette', function (palette) {
-		return {{uiStyle.palette.colors}}.palette
+	window.$HandleBars.registerHelper('uiStylePalette', function (palette, keyword) {
+		return palette.colors.keyword;
   	});
 </function>
