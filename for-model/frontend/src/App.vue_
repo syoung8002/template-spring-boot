@@ -57,7 +57,7 @@ fileName: App.vue
                         key="{{namePlural}}"
                         to="/{{namePlural}}"
                         @click="changeUrl()"
-                        color="{{uiStyle.palette.color.primary.colorCode}}dddd"
+                        color="{{uiStyle.palette.colors.primary.colorCode}}dddd"
                         style="font-weight:700;"
                     >
                         {{namePascalCase}}
@@ -71,7 +71,7 @@ fileName: App.vue
                         key="{{namePlural}}"
                         to="{{namePlural}}"
                         @click="changeUrl()"
-                        color="{{uiStyle.palette.color.primary.colorCode}}"
+                        color="{{uiStyle.palette.colors.primary.colorCode}}"
                         style="font-weight:700;"
                     >
                         {{namePascalCase}}
@@ -280,5 +280,9 @@ export default {
 		} catch(e){
 		console.log(e)
 		}
+  	});
+
+	window.$HandleBars.registerHelper('uiStylePalette', function (palette) {
+		return {{uiStyle.palette.colors}}.palette
   	});
 </function>
