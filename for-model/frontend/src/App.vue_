@@ -57,7 +57,7 @@ fileName: App.vue
                         key="{{namePlural}}"
                         to="/{{namePlural}}"
                         @click="changeUrl()"
-                        color="{{#uiStylePalette uiStyle.palette 'primary'}}"
+                        color="{{#uiStylePalette uiStyle.palette "primary"}}"
                         style="font-weight:700;"
                     >
                         {{namePascalCase}}
