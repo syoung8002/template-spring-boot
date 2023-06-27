@@ -48,9 +48,9 @@ fileName: App.vue
 
             <v-navigation-drawer app clipped flat v-model="sideBar">
                 <v-list>
+		    {{#if uiStyle.palette}}
 		    {{#boundedContexts}}
     		    {{#aggregates}}
-		    {{#if ../../uiStyle.palette}}
                     <v-list-item
                         class="px-2"
                         key="{{namePlural}}"
@@ -102,8 +102,8 @@ fileName: App.vue
                         {{namePascalCase}}
                     </v-list-item>
     		    {{/viewes}}
-		    {{/if}}
 		    {{/boundedContexts}}
+		    {{/if}}
                 </v-list>
             </v-navigation-drawer>
         </div>
