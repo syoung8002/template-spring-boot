@@ -50,7 +50,7 @@ fileName: App.vue
                 <v-list>
 		    {{#boundedContexts}}
     		    {{#aggregates}}
-{{/../uiStyle}}4444
+{{../../uiStyle}}4444
                     <v-list-item
                         class="px-2"
                         key="{{namePlural}}"
