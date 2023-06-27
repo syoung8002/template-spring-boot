@@ -76,7 +76,10 @@ fileName: App.vue
                         {{namePascalCase}}
                     </v-list-item>
     		    {{/viewes}}
+		    {{/boundedContexts}}
 		    {{else}}
+		    {{#boundedContexts}}
+    		    {{#aggregates}}
 		    <v-list-item
                         class="px-2"
                         key="{{namePlural}}"
