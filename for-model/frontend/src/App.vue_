@@ -25,18 +25,18 @@ fileName: App.vue
                     </span>
                 </v-toolbar-title>
 		{{#if uiStyle.logoImage}}
-		<div 
+                <div 
                     v-if="urlPath!=null" 
                     key="" 
                     to="/" 
                     @click="goHome()"
                     style="margin-left:10px; width: 3%; height: 100%;  cursor:pointer; border-radius: 50%; overflow: hidden;"
-		>
+                >
                     <v-img
                         class="bg-white"
                         :aspect-ratio="1"
                         src="{{uiStyle.logoImage.url}}"
-			cover
+                        cover
                     ></v-img>
                 </div>
 		{{else}}
@@ -147,7 +147,7 @@ fileName: App.vue
                                     size="80"
                                     style="margin-top:80px;"
 				{{#if uiStyle.icon}}
-				><span class="material-symbols-outlined" style="font-size:60px; color:#9575CD;">{{uiStyle.icon}}</span>
+                                ><span class="material-symbols-outlined" style="font-size:60px; color:#9575CD;">{{uiStyle.icon}}</span>
 				{{else}}
                                 ><span class="mdi mdi-apps" style="font-size:60px; color:#9575CD;"></span>
 				{{/if}}
