@@ -94,7 +94,7 @@ path: frontend/src/components
                     {{else}}
                     {{/if}}
                     v-if="!editMode"
-                    color="{{#uiStylePalette 'surface'}}"
+                    color="deep-purple lighten-2"
                     text
                     {{#if (checkParam fieldDescriptors)}}
                     @click="open{{namePascalCase}}"
@@ -119,7 +119,7 @@ path: frontend/src/components
             {{^isRestRepository}}
             <v-btn
                     v-if="!editMode"
-                    color="{{#uiStylePalette 'surface'}}"
+                    color="deep-purple lighten-2"
                     text
                     {{#if (checkParam fieldDescriptors)}}
                     @click="open{{namePascalCase}}"
