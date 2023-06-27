@@ -67,7 +67,7 @@ path: frontend/src/components
             {{/if}}
             </v-btn>
             <v-btn
-                    color="deep-purple lighten-2"
+                    color="{{uiStylePalette 'surface'}}"
                     text
                     @click="remove"
                     v-if="!editMode"
@@ -75,7 +75,7 @@ path: frontend/src/components
                 Delete
             </v-btn>
             <v-btn
-                    color="deep-purple lighten-2"
+                    color="{{uiStylePalette 'surface'}}"
                     text
                     @click="editMode = false"
                     v-if="editMode && !isNew"
@@ -94,7 +94,7 @@ path: frontend/src/components
                     {{else}}
                     {{/if}}
                     v-if="!editMode"
-                    color="deep-purple lighten-2"
+                    color="{{uiStylePalette 'surface'}}"
                     text
                     {{#if (checkParam fieldDescriptors)}}
                     @click="open{{namePascalCase}}"
@@ -119,7 +119,7 @@ path: frontend/src/components
             {{^isRestRepository}}
             <v-btn
                     v-if="!editMode"
-                    color="deep-purple lighten-2"
+                    color="{{uiStylePalette 'surface'}}"
                     text
                     {{#if (checkParam fieldDescriptors)}}
                     @click="open{{namePascalCase}}"
