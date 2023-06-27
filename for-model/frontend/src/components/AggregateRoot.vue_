@@ -3,7 +3,7 @@ fileName: {{namePascalCase}}.vue
 path: frontend/src/components
 ---
 <template>
-{{#uiStylePalette 'primary'}}{{/uiStylePalette}}
+{{uiStylePalette 'primary'}}
     <v-card style="width:450px;" outlined>
         <template slot="progress">
             <v-progress-linear
