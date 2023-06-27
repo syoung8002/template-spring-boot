@@ -24,13 +24,30 @@ fileName: App.vue
                         {{ projectName }}
                     </span>
                 </v-toolbar-title>
+		{{#if uiStyle.logoImage}}
+		<div 
+                    v-if="urlPath!=null" 
+                    key="" 
+                    to="/" 
+                    @click="goHome()"
+                    style="margin-left:10px; width: 3%; height: 100%;  cursor:pointer; border-radius: 50%; overflow: hidden;"
+		>
+                    <v-img
+                        class="bg-white"
+                        :aspect-ratio="1"
+                        src="{{uiStyle.logoImage.url}}"
+			cover
+                    ></v-img>
+                </div>
+		{{else}}
                 <span v-if="urlPath!=null" 
                     class="mdi mdi-home" 
                     key="" 
                     to="/" 
                     @click="goHome()"
                     style="margin-left:10px; font-size:20px; cursor:pointer;"
-                    ></span> 
+	        ></span> 
+		{{/if}}
                 <v-spacer></v-spacer>
 
                 {{#if (isSelectedSecurity selectedSecurity)}}
