@@ -5,7 +5,11 @@ Vue.use(Vuetify);
 
 export default new Vuetify({
     theme: {
-        dark: false,
-        primary: options.rootModel.uiStyle.palette.colors.primary.colorCode
+        dark: true,
+        themes: {
+            dark: {
+                primary: {{options.rootModel.uiStyle.palette.colors.primary.colorCode}}
+            }
+        }
     }
 });
