@@ -1,4 +1,4 @@
-fileName: Email.vue
+fileName: Likes.vue
 path: frontend/src/components/vo
 ---
 <template>
