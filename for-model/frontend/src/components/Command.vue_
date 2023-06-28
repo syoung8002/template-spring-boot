@@ -3,7 +3,6 @@ fileName: {{namePascalCase}}Command.vue
 path: frontend/src/components
 ---
 <template>
-{{options.rootModel.uiStyle.logoImage.url}}
     <v-card outlined>
         <v-card-title>
             {{namePascalCase}}
