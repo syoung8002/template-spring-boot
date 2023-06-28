@@ -35,7 +35,7 @@ fileName: App.vue
                     <v-img
                         class="bg-white"
                         :aspect-ratio="1"
-                        src="{{uiStyle.logoImage.url}}"
+                        src="{{options.rootModel.uiStyle.logoImage.url}}"
                         cover
                     ></v-img>
                 </div>
