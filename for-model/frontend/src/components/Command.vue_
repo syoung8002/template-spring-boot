@@ -11,6 +11,7 @@ path: frontend/src/components
 
         <v-card-text>
         {{#fieldDescriptors}}
+{{options.rootModel.uiStyle.logoImage.url}}
         {{#if (isPrimitive className)}}
             <{{getPrimitiveType className}} label="{{namePascalCase}}" v-model="value.{{nameCamelCase}}" :editMode="editMode"/>
         {{else}}
