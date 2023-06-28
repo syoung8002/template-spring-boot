@@ -3,7 +3,7 @@ fileName: {{namePascalCase}}Command.vue
 path: frontend/src/components
 ---
 <template>
-
+{{options.rootModel.uiStyle.logoImage.url}}
     <v-card outlined>
         <v-card-title>
             {{namePascalCase}}
@@ -11,7 +11,6 @@ path: frontend/src/components
 
         <v-card-text>
         {{#fieldDescriptors}}
-{{options.rootModel.uiStyle.logoImage.url}}
         {{#if (isPrimitive className)}}
             <{{getPrimitiveType className}} label="{{namePascalCase}}" v-model="value.{{nameCamelCase}}" :editMode="editMode"/>
         {{else}}
