@@ -5,6 +5,6 @@ Vue.use(Vuetify);
 
 export default new Vuetify({
     theme: {
-        primary: {{ "'+options.rootModel.uiStyle.palette.colors.primary.colorCode+'" }}
+        primary: {{ "'"+options.rootModel.uiStyle.palette.colors.primary.colorCode+"'" }}
     }
 });
