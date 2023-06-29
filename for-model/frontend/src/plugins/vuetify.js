@@ -8,7 +8,8 @@ export default new Vuetify({
         light: true,
         themes: {
             light: {
-                primary: '{{options.rootModel.uiStyle.palette.colors.primary.colorCode}}'
+                primary: '{{options.rootModel.uiStyle.palette.colors.primary.colorCode}}',
+                'primary-darken-1': '{{options.rootModel.uiStyle.palette.colors['primary-darken-1'].colorCode}}',
             }
         }
     }
