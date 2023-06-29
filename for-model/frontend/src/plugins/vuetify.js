@@ -8,6 +8,7 @@ export default new Vuetify({
         light: true,
         themes: {
             light: {
+<<<<<<< HEAD
                 surface:'{{options.rootModel.uiStyle.palette.colors.surface.colorCode}}',
                 primary: '{{options.rootModel.uiStyle.palette.colors.primary.colorCode}}',
                 'primary-darken-1': '{{options.rootModel.uiStyle.palette.colors.primary-darken-1.colorCode}}',
@@ -20,4 +21,11 @@ export default new Vuetify({
             },
         },
     },
+=======
+                primary: '{{options.rootModel.uiStyle.palette.colors.primary.colorCode}}',
+                'primary-darken-1': '{{options.rootModel.uiStyle.palette.colors.primary-darken-1.colorCode}}',
+            }
+        }
+    }
+>>>>>>> 69d2cdd1447ec334dd8962d459fbfa1e3c223e4f
 });
