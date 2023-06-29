@@ -9,7 +9,7 @@ export default new Vuetify({
         themes: {
             light: {
                 primary: '{{options.rootModel.uiStyle.palette.colors.primary.colorCode}}',
-                'primary-darken-1': '{{options.rootModel.uiStyle.palette.colors['primary-darken-1'].colorCode}}',
+                'primary-darken-1': '{{options.rootModel.uiStyle.palette.colors.primary-darken-1.colorCode}}',
             }
         }
     }
