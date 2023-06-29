@@ -17,7 +17,7 @@ path: frontend/src/components
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="deep-purple lighten-2" text @click="pickerDialog = false">Close</v-btn>
+                    <v-btn color="primary" text @click="pickerDialog = false">Close</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -30,7 +30,7 @@ path: frontend/src/components
     <v-card style="width:450px;" outlined>
         <template slot="progress">
             <v-progress-linear
-                    color="deep-purple"
+                    color="primary-darker-1"
                     height="10"
                     indeterminate
             ></v-progress-linear>
@@ -66,7 +66,7 @@ path: frontend/src/components
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-                    color="deep-purple lighten-2"
+                    color="primary"
                     text
                     @click="edit"
                     v-if="!editMode"
@@ -74,7 +74,7 @@ path: frontend/src/components
                 Edit
             </v-btn>
             <v-btn
-                    color="deep-purple lighten-2"
+                    color="primary"
                     text
                     @click="save"
                     v-else
@@ -82,7 +82,7 @@ path: frontend/src/components
                 Save
             </v-btn>
             <v-btn
-                    color="deep-purple lighten-2"
+                    color="primary"
                     text
                     @click="remove"
                     v-if="!editMode"
@@ -90,7 +90,7 @@ path: frontend/src/components
                 Delete
             </v-btn>
             <v-btn
-                    color="deep-purple lighten-2"
+                    color="primary"
                     text
                     @click="editMode = false"
                     v-if="editMode && !isNew"
@@ -103,7 +103,7 @@ path: frontend/src/components
             {{#targetElement.operations}}
             <v-btn
                     v-if="!editMode"
-                    color="deep-purple lighten-2"
+                    color="primary"
                     text
                     {{#if (checkParam fieldDescriptors)}}
                     @click="open{{name}}"
@@ -126,7 +126,7 @@ path: frontend/src/components
             {{^isOverride}}
             <v-btn
                     v-if="!editMode"
-                    color="deep-purple lighten-2"
+                    color="primary"
                     text
                     {{#if (checkParam fieldDescriptors)}}
                     @click="open{{name}}"

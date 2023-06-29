@@ -46,7 +46,7 @@ path: frontend/src/components/listers
                 {{#if (checkGeneralization aggregateRoot.entities.relations nameCamelCase)}}
                 <v-speed-dial v-model="btnDialog" style="position: absolute; bottom: 5%; right: 2%; z-index:99">
                     <template v-slot:activator>
-                        <v-btn color="blue" fab dark large>
+                        <v-btn color="primary" fab dark large>
                             <v-icon v-if="btnDialog">
                                 mdi-close
                             </v-icon>
@@ -64,7 +64,7 @@ path: frontend/src/components/listers
                     </v-btn>
                 </v-speed-dial>
                 {{else}}
-                <v-btn  color="blue" fab dark large
+                <v-btn  color="primary" fab dark large
                         style="position:fixed; bottom: 5%; right: 2%; z-index:99"
                         @click="openDialog=true;"
                 >

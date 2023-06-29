@@ -34,7 +34,7 @@ path: frontend/src/components/listers
             <v-btn text color="deep-purple lighten-2" large @click="goList">List</v-btn>
             <v-spacer></v-spacer>
             <v-btn
-                    color="deep-purple lighten-2"
+                    color="primary"
                     text
                     @click="edit"
                     v-if="!editMode"
@@ -42,7 +42,7 @@ path: frontend/src/components/listers
                 Edit
             </v-btn>
             <v-btn
-                    color="deep-purple lighten-2"
+                    color="primary"
                     text
                     @click="save"
                     v-else
@@ -50,7 +50,7 @@ path: frontend/src/components/listers
                 Save
             </v-btn>
             <v-btn
-                    color="deep-purple lighten-2"
+                    color="primary"
                     text
                     @click="remove"
                     v-if="!editMode"
@@ -58,7 +58,7 @@ path: frontend/src/components/listers
                 Delete
             </v-btn>
             <v-btn
-                    color="deep-purple lighten-2"
+                    color="primary"
                     text
                     @click="editMode = false"
                     v-if="editMode"

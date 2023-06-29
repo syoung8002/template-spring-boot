@@ -5,7 +5,7 @@ fileName: App.vue
 <template>
     <v-app id="inspire">
         <div>
-            <v-app-bar app clipped-left flat>
+            <v-app-bar color="primary" app clipped-left flat>
                 <v-toolbar-title>
                     <span class="second-word font uppercase"
                         style="font-weight:700;"
@@ -54,7 +54,7 @@ fileName: App.vue
                 <b style="margin-left:10px">\{{username}} 님</b>
                 <v-btn
                     text
-                    color="deep-purple lighten-2"
+                    color="primary"
                     @click="logout()"
                 >
                     Logout
@@ -67,12 +67,12 @@ fileName: App.vue
                 <v-list>
 		    {{#boundedContexts}}
     		    {{#aggregates}}
-		    <v-list-item
+                    <v-list-item
                         class="px-2"
                         key="{{namePlural}}"
                         to="/{{namePlural}}"
                         @click="changeUrl()"
-                        color="deep-purple lighten-2"
+                        color="primary"
                         style="font-weight:700;"
                     >
                         {{namePascalCase}}
@@ -86,7 +86,7 @@ fileName: App.vue
                         key="{{namePlural}}"
                         to="{{namePlural}}"
                         @click="changeUrl()"
-                        color="deep-purple lighten-2"
+                        color="primary"
                         style="font-weight:700;"
                     >
                         {{namePascalCase}}
@@ -134,7 +134,7 @@ fileName: App.vue
                                             key="{{namePlural}}"
                                             to="/{{namePlural}}"
                                             @click="changeUrl()"
-                                            color="deep-purple lighten-2"
+                                            color="primary"
                                             style="font-weight:500; font-size:20px; padding:15px; border:solid 2px; max-width:250px; overflow:hidden"
                                         >
                                             {{namePascalCase}}
@@ -169,7 +169,7 @@ fileName: App.vue
                                     key="{{namePlural}}"
                                     to="/{{namePlural}}"
                                     @click="changeUrl()"
-                                    color="deep-purple lighten-2"
+                                    color="primary"
                                     style="font-weight:500; font-size:20px; padding:15px;"
                                 >
                                     {{namePascalCase}}

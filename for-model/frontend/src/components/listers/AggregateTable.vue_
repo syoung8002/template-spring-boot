@@ -23,7 +23,7 @@ path: frontend/src/components/listers
                     <template v-slot:activator="{ on, attrs }">
                         <v-fab-transition>
                             <v-btn
-                                    color="blue"
+                                    color="primary"
                                     fab
                                     dark
                                     large
