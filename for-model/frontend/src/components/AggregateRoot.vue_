@@ -422,7 +422,7 @@ path: frontend/src/components
                     return false;
                 }
             }
-    
+
         } catch(e){
             console.log(e)
         }
