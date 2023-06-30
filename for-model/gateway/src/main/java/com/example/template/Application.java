@@ -37,4 +37,18 @@ public class Application {
 
 
 <function>
+window.$HandleBars.registerHelper('isSelectedSecurity', function (toppingPlatforms) {
+    try{
+        for(var i=0; i<toppingPlatforms.length; i++){
+            if(toppingPlatforms[i] == "keycloak-security" || toppingPlatforms[i] == "spring-security"){
+                return true;
+            }else {
+                return false;
+            }
+        }
+
+    } catch(e){
+        console.log(e)
+    }
+});
 </function>
