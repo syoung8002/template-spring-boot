@@ -250,7 +250,7 @@ export default {
 <style>
 .v-application {
     background-color: {{options.rootModel.uiStyle.palette.colors.info.colorCode}} !important;
-  }
+}
 </style>
 
 <function>
