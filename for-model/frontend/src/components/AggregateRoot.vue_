@@ -85,7 +85,7 @@ path: frontend/src/components
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
-            {{#if (isSelectedSecurity selectedSecurity)}}
+            {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
             {{#commands}}
             {{^isRestRepository}}
             <v-btn  
@@ -206,7 +206,7 @@ path: frontend/src/components
         {{/commands}}
         }),
         computed:{
-            {{#if (isSelectedSecurity selectedSecurity)}}
+            {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
             userRoles() {
                 return localStorage.getItem('user_client_roles');
             } 
@@ -509,21 +509,6 @@ path: frontend/src/components
             console.log(e)
         }
     })
-
-    window.$HandleBars.registerHelper('isSelectedSecurity', function (selectedSecurity) {
-		try{
-			if(!selectedSecurity)
-				return false;
-
-			if(selectedSecurity == 'isKeycloakSecurity'){
-				return true;
-			}
-
-			return;
-		} catch(e){
-		    console.log(e)
-		}
-  	});
 
     window.$HandleBars.registerHelper('hasRestRepository', function (commands) {
 		try{
