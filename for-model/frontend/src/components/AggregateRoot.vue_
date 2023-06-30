@@ -414,21 +414,6 @@ path: frontend/src/components
 
 <function>
 
-    window.$HandleBars.registerHelper('isSelectedSecurity', function (toppingPlatforms) {
-        try{
-            for(var i=0; i<toppingPlatforms.length; i++){
-                if(toppingPlatforms[i] == "keycloak-security" || toppingPlatforms[i] == "spring-security"){
-                    return true;
-                }else {
-                    return false;
-                }
-            }
-
-        } catch(e){
-            console.log(e)
-        }
-    });
-
     window.$HandleBars.registerHelper('checkCommandPut', function (info, options) {
         if(info.endsWith('PUT')){
             return options.fn(this);
@@ -545,6 +530,21 @@ path: frontend/src/components
 		    console.log(e)
 		}
   	});
+
+    window.$HandleBars.registerHelper('isSelectedSecurity', function (toppingPlatforms) {
+        try{
+            for(var i=0; i<toppingPlatforms.length; i++){
+                if(toppingPlatforms[i] == "keycloak-security" || toppingPlatforms[i] == "spring-security"){
+                    return true;
+                }else {
+                    return false;
+                }
+            }
+
+        } catch(e){
+            console.log(e)
+        }
+    });
 
     window.$HandleBars.registerHelper('attachedActorName', function (actorName, options) {
         try {
