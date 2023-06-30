@@ -413,6 +413,7 @@ path: frontend/src/components
 
 
 <function>
+
     window.$HandleBars.registerHelper('isSelectedSecurity', function (toppingPlatforms) {
         try{
             for(var i=0; i<toppingPlatforms.length; i++){
