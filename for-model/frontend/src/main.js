@@ -6,7 +6,6 @@ import Managing from "./components";
 import router from './router';
 {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
 import Keycloak from 'keycloak-js';
-{{else}}
 {{/if}}
 Vue.config.productionTip = false;
 
