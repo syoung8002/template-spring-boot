@@ -4,7 +4,7 @@ import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
 import Managing from "./components";
 import router from './router';
-{{#if (isSelectedSecurity selectedSecurity)}}
+{{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
 import Keycloak from 'keycloak-js'
 {{else}}
 {{/if}}
@@ -70,7 +70,7 @@ Vue.prototype.$ManagerLists.forEach(function(item, idx) {
   })
 })
 
-{{#if (isSelectedSecurity selectedSecurity)}}
+{{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
 let initOptions = {
   url: `http://localhost:9090/`,
   realm: `master`,
@@ -166,18 +166,4 @@ new Vue({
 {{/if}}
 
 <function>
-	window.$HandleBars.registerHelper('isSelectedSecurity', function (selectedSecurity) {
-		try{
-			if(!selectedSecurity)
-				return false;
-
-			if(selectedSecurity == 'isKeycloakSecurity'){
-				return true;
-			}
-
-			return;
-		} catch(e){
-		console.log(e)
-		}
-  	});
 </function>
