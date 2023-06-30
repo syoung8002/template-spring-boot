@@ -85,7 +85,7 @@ path: frontend/src/components
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
-            {{#if (isSelectedSecurity selectedSecurity)}}
+            {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
             {{#commands}}
             {{^isRestRepository}}
             <v-btn  
@@ -206,7 +206,7 @@ path: frontend/src/components
         {{/commands}}
         }),
         computed:{
-            {{#if (isSelectedSecurity selectedSecurity)}}
+            {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
             userRoles() {
                 return localStorage.getItem('user_client_roles');
             } 
@@ -413,6 +413,7 @@ path: frontend/src/components
 
 
 <function>
+
     window.$HandleBars.registerHelper('checkCommandPut', function (info, options) {
         if(info.endsWith('PUT')){
             return options.fn(this);
@@ -470,22 +471,6 @@ path: frontend/src/components
         }
     })
 
-    window.$HandleBars.registerHelper('checkVO', function (className, options) {
-        if(className.endsWith("Address") || className.endsWith("Photo") || className.endsWith("User") || className.endsWith("Email") 
-                || className.endsWith("Payment") || className.endsWith("Money") || className.endsWith("Weather") || className.endsWith("Rating")){
-            return options.fn(this);
-        }
-    })
-
-    window.$HandleBars.registerHelper('checkEntityMember', function (className, options) {
-        if(!(className.endsWith("Address") || className.endsWith("Photo") || className.endsWith("User") || className.endsWith("Email") 
-                || className.endsWith("Payment") || className.endsWith("Money") || className.endsWith("Weather") || className.endsWith("Rating")) && className.indexOf("java.")==-1 && className.indexOf("List")==-1) {
-            return options.fn(this);
-        } else {
-            return options.inverse(this);
-        }
-    })
-
     window.$HandleBars.registerHelper('checkListOfEntityMember', function (className, options) {
         if(className.indexOf("List")==0){
             return options.fn(this);
@@ -526,21 +511,6 @@ path: frontend/src/components
         }
     })
 
-    window.$HandleBars.registerHelper('isSelectedSecurity', function (selectedSecurity) {
-		try{
-			if(!selectedSecurity)
-				return false;
-
-			if(selectedSecurity == 'isKeycloakSecurity'){
-				return true;
-			}
-
-			return;
-		} catch(e){
-		    console.log(e)
-		}
-  	});
-
     window.$HandleBars.registerHelper('hasRestRepository', function (commands) {
 		try{
 			if(commands == "undefined") {
@@ -560,6 +530,21 @@ path: frontend/src/components
 		    console.log(e)
 		}
   	});
+
+    window.$HandleBars.registerHelper('isSelectedSecurity', function (toppingPlatforms) {
+        try{
+            for(var i=0; i<toppingPlatforms.length; i++){
+                if(toppingPlatforms[i] == "keycloak-security" || toppingPlatforms[i] == "spring-security"){
+                    return true;
+                }else {
+                    return false;
+                }
+            }
+
+        } catch(e){
+            console.log(e)
+        }
+    });
 
     window.$HandleBars.registerHelper('attachedActorName', function (actorName, options) {
         try {

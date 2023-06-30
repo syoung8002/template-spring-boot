@@ -4,9 +4,8 @@ import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
 import Managing from "./components";
 import router from './router';
-{{#if (isSelectedSecurity selectedSecurity)}}
-import Keycloak from 'keycloak-js'
-{{else}}
+{{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
+import Keycloak from 'keycloak-js';
 {{/if}}
 Vue.config.productionTip = false;
 
@@ -70,7 +69,7 @@ Vue.prototype.$ManagerLists.forEach(function(item, idx) {
   })
 })
 
-{{#if (isSelectedSecurity selectedSecurity)}}
+{{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
 let initOptions = {
   url: `http://localhost:9090/`,
   realm: `master`,
@@ -166,18 +165,18 @@ new Vue({
 {{/if}}
 
 <function>
-	window.$HandleBars.registerHelper('isSelectedSecurity', function (selectedSecurity) {
-		try{
-			if(!selectedSecurity)
-				return false;
+window.$HandleBars.registerHelper('isSelectedSecurity', function (toppingPlatforms) {
+    try{
+        for(var i=0; i<toppingPlatforms.length; i++){
+            if(toppingPlatforms[i] == "keycloak-security" || toppingPlatforms[i] == "spring-security"){
+                return true;
+            }else {
+                return false;
+            }
+        }
 
-			if(selectedSecurity == 'isKeycloakSecurity'){
-				return true;
-			}
-
-			return;
-		} catch(e){
-		console.log(e)
-		}
-  	});
+    } catch(e){
+        console.log(e)
+    }
+});
 </function>

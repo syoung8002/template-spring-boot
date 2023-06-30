@@ -1,7 +1,7 @@
 path: /src/main/java/{{options.package}}
 ---
 package {{options.package}};
-{{#if (isSelectedSecurity selectedSecurity)}}
+{{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -37,18 +37,18 @@ public class Application {
 
 
 <function>
-	window.$HandleBars.registerHelper('isSelectedSecurity', function (selectedSecurity) {
-		try{
-			if(!selectedSecurity)
-				return false;
+window.$HandleBars.registerHelper('isSelectedSecurity', function (toppingPlatforms) {
+    try{
+        for(var i=0; i<toppingPlatforms.length; i++){
+            if(toppingPlatforms[i] == "keycloak-security" || toppingPlatforms[i] == "spring-security"){
+                return true;
+            }else {
+                return false;
+            }
+        }
 
-			if(selectedSecurity == 'isKeycloakSecurity'){
-				return true;
-			}
-
-			return;
-		} catch(e){
-		console.log(e)
-		}
-  	});
+    } catch(e){
+        console.log(e)
+    }
+});
 </function>
