@@ -96,7 +96,11 @@ function init() {
     new Vue({
       vuetify,
       router,
-      render: h => h(App)
+      render: h => h(App, {
+        props: {
+          keycloakVal: keycloak,
+        },
+      }),
     }).$mount("#app");
 
     localStorage.setItem(`vue-token`, keycloak.token);
