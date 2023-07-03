@@ -532,15 +532,18 @@ path: frontend/src/components
   	});
 
     window.$HandleBars.registerHelper('isSelectedSecurity', function (toppingPlatforms) {
+	var selectedSecurity = false;
         try{
             for(var i=0; i<toppingPlatforms.length; i++){
                 if(toppingPlatforms[i] == "keycloak-security" || toppingPlatforms[i] == "spring-security"){
-                    return true;
+                    selectedSecurity = true;
                 }else {
-                    return false;
+                    selectedSecurity = false;
                 }
             }
 
+	    return selectedSecurity;
+	
         } catch(e){
             console.log(e)
         }
