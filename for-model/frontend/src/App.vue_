@@ -46,7 +46,7 @@ fileName: App.vue
                     to="/" 
                     @click="goHome()"
                     style="margin-left:10px; font-size:20px; cursor:pointer;"
-	        ></span> 
+		></span> 
 		{{/if}}
                 <v-spacer></v-spacer>
 
