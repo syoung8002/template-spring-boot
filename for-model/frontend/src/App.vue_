@@ -54,7 +54,8 @@ fileName: App.vue
                 <b style="margin-left:10px">\{{username}} 님</b>
                 <v-btn
                     text
-                    color="primary"
+                    color="white"
+                    style="font-size:10px"
                     @click="logout()"
                 >
                     Logout
