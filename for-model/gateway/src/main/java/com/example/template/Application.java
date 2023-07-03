@@ -38,14 +38,17 @@ public class Application {
 
 <function>
 window.$HandleBars.registerHelper('isSelectedSecurity', function (toppingPlatforms) {
+    var SelectedSecurity = false;
     try{
         for(var i=0; i<toppingPlatforms.length; i++){
             if(toppingPlatforms[i] == "keycloak-security" || toppingPlatforms[i] == "spring-security"){
-                return true;
+                SelectedSecurity =  true;
             }else {
-                return false;
+                SelectedSecurity = false;
             }
         }
+
+        return SelectedSecurity;
 
     } catch(e){
         console.log(e)
