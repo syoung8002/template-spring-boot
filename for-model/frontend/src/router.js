@@ -30,12 +30,12 @@ export default new Router({
        {{#boundedContexts}}
         {{#aggregates}}
             {
-                path: '/{{namePlural}}',
+                path: '/{{boundedContext.namePlural}}/{{namePlural}}',
                 name: '{{boundedContext.namePascalCase}}{{namePascalCase}}Manager',
                 component: {{boundedContext.namePascalCase}}{{namePascalCase}}Manager
             },
             {
-                path: '/{{namePlural}}/:id',
+                path: '/{{boundedContext.namePlural}}/{{namePlural}}/:id',
                 name: '{{boundedContext.namePascalCase}}{{namePascalCase}}Detail',
                 component: {{boundedContext.namePascalCase}}{{namePascalCase}}Detail
             },
