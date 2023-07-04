@@ -80,7 +80,7 @@ path: frontend/src/components/listers
                     v-model="values[index]" @delete="remove"
                     v-bind:is="values[index]._links.type.href.replace('/', '')"/>
             {{else}}
-            <{{namePascalCase}} :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
+            <{{boundedContext.namePascalCase}}{{namePascalCase}} :offline="offline" class="video-card" v-for="(value, index) in values" v-model="values[index]" v-bind:key="index" @delete="remove"/>
             {{/if}}
         </v-row>
     </div>
@@ -89,12 +89,12 @@ path: frontend/src/components/listers
 <script>
 
     const axios = require('axios').default;
-    import {{namePascalCase}} from './../{{boundedContext.namePascalCase}}{{namePascalCase}}.vue';
+    import {{boundedContext.namePascalCase}}{{namePascalCase}} from './../{{boundedContext.namePascalCase}}{{namePascalCase}}.vue';
 
     export default {
         name: '{{boundedContext.namePascalCase}}{{namePascalCase}}Manager',
         components: {
-            {{namePascalCase}},
+            {{boundedContext.namePascalCase}}{{namePascalCase}},
         },
         props: {
             offline: Boolean
