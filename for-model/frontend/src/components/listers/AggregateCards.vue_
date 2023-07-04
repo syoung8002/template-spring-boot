@@ -5,7 +5,7 @@ path: frontend/src/components/listers
 <template>
     <div>
         {{#if (checkGeneralization aggregateRoot.entities.relations nameCamelCase)}}
-        <h1 style = "margin-left:4.5%; margin-top:-10px; cursor:pointer;" @click="load">{{namePascalCase}}</h1>
+        <h1 style = "margin-left:4.5%; margin-top:-10px; cursor:pointer;" @click="load">{{boundedContext.namePascalCase}}{{namePascalCase}}</h1>
         <v-select
                 label="TYPE"
                 :items="btnList"
