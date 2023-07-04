@@ -1,5 +1,5 @@
 forEach: Aggregate
-fileName: {{namePascalCase}}.vue
+fileName: {{boundedContext.namePascalCase}}{{namePascalCase}}.vue
 path: frontend/src/components
 ---
 <template>
