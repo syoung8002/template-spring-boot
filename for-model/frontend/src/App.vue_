@@ -141,7 +141,7 @@ fileName: App.vue
                                             {{boundedContext.namePascalCase}}{{namePascalCase}}
                                         </v-btn>
                                     </template>
-                                    <span>{{namePascalCase}}</span>
+                                    <span>{{boundedContext.namePascalCase}}{{namePascalCase}}</span>
                                 </v-tooltip>
                             </v-card-actions>
                         </v-card>
