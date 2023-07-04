@@ -10,11 +10,11 @@ Vue.use(Router);
 {{#boundedContexts}}
     {{#aggregates}}
         {{#if uiStyle.layout}}
-import {{namePascalCase}}Manager from "./components/listers/{{namePascalCase}}{{#layoutPascalCase uiStyle.layout}}{{/layoutPascalCase}}"
+import {{namePascalCase}}Manager from "./components/listers/{{boundedContext.namePascalCase}}{{namePascalCase}}{{#layoutPascalCase uiStyle.layout}}{{/layoutPascalCase}}"
         {{else}}
-import {{namePascalCase}}Manager from "./components/listers/{{namePascalCase}}Cards"
+import {{namePascalCase}}Manager from "./components/listers/{{boundedContext.namePascalCase}}{{namePascalCase}}Cards"
         {{/if}}
-import {{namePascalCase}}Detail from "./components/listers/{{namePascalCase}}Detail"
+import {{namePascalCase}}Detail from "./components/listers/{{boundedContext.namePascalCase}}{{namePascalCase}}Detail"
     {{/aggregates}}
 
     {{#viewes}}
