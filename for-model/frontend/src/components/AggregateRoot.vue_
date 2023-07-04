@@ -3,7 +3,7 @@ fileName: {{namePascalCase}}.vue
 path: frontend/src/components
 ---
 <template>
-{{#ifNotNull displayName namePascalCase}}{{/ifNotNull}}
+
     <v-card style="width:450px;" outlined color="surface">
         <template slot="progress">
             <v-progress-linear
@@ -14,10 +14,10 @@ path: frontend/src/components
         </template>
 
         <v-card-title v-if="value._links">
-            {{namePascalCase}} # \{{value._links.self.href.split("/")[value._links.self.href.split("/").length - 1]}}
+            {{#ifNotNull displayName namePascalCase}}{{/ifNotNull}} # \{{value._links.self.href.split("/")[value._links.self.href.split("/").length - 1]}}
         </v-card-title >
         <v-card-title v-else>
-            {{namePascalCase}}
+            {{#ifNotNull displayName namePascalCase}}{{/ifNotNull}}
         </v-card-title >
 
         <v-card-text>
