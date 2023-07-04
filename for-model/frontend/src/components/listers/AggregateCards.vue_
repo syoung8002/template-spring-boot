@@ -28,7 +28,7 @@ path: frontend/src/components/listers
                     <component :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
                             @add="append" v-if="tick" v-bind:is="childType"/>
                     {{else}}
-                    <{{namePascalCase}} :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
+                    <{{boundedContext.namePascalCase}}{{namePascalCase}} :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" 
                             @add="append" v-if="tick"/>
                     {{/if}}
 
