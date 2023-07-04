@@ -1,5 +1,5 @@
 forEach: Aggregate
-fileName: {{namePascalCase}}List.vue
+fileName: {{boundedContext.namePascalCase}}{{namePascalCase}}List.vue
 path: frontend/src/components/listers
 ---
 <template>
