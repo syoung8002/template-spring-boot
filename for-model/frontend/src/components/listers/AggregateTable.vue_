@@ -35,7 +35,7 @@ path: frontend/src/components/listers
                         </v-fab-transition>
                     </template>
 
-                    <{{namePascalCase}} :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
+                    <{{boundedContext.namePascalCase}}{{namePascalCase}} :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
                 
                     <v-btn
                             style="postition:absolute; top:2%; right:2%"
@@ -54,12 +54,12 @@ path: frontend/src/components/listers
 
 <script>
     const axios = require('axios').default;
-    import {{namePascalCase}} from './../{{boundedContext.namePascalCase}}{{namePascalCase}}.vue';
+    import {{boundedContext.namePascalCase}}{{namePascalCase}} from './../{{boundedContext.namePascalCase}}{{namePascalCase}}.vue';
 
     export default {
         name: '{{boundedContext.namePascalCase}}{{namePascalCase}}Manager',
         components: {
-            {{namePascalCase}},
+            {{boundedContext.namePascalCase}}{{namePascalCase}},
         },
         props: {
             offline: Boolean,
