@@ -54,7 +54,7 @@ path: frontend/src/components/listers
     const axios = require('axios').default;
 
     export default {
-        name: '{{namePascalCase}}Picker',
+        name: '{{boundedContext.namePascalCase}}{{namePascalCase}}Picker',
         props: {
             value: [String, Object, Array, Number, Boolean],
         },
