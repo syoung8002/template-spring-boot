@@ -10,11 +10,11 @@ Vue.use(Router);
 {{#boundedContexts}}
     {{#aggregates}}
         {{#if uiStyle.layout}}
-import {{namePascalCase}}Manager from "./components/listers/{{boundedContext.namePascalCase}}{{namePascalCase}}{{#layoutPascalCase uiStyle.layout}}{{/layoutPascalCase}}"
+import {{boundedContext.namePascalCase}}{{namePascalCase}}Manager from "./components/listers/{{boundedContext.namePascalCase}}{{namePascalCase}}{{#layoutPascalCase uiStyle.layout}}{{/layoutPascalCase}}"
         {{else}}
-import {{namePascalCase}}Manager from "./components/listers/{{boundedContext.namePascalCase}}{{namePascalCase}}Cards"
+import {{boundedContext.namePascalCase}}{{namePascalCase}}Manager from "./components/listers/{{boundedContext.namePascalCase}}{{namePascalCase}}Cards"
         {{/if}}
-import {{namePascalCase}}Detail from "./components/listers/{{boundedContext.namePascalCase}}{{namePascalCase}}Detail"
+import {{boundedContext.namePascalCase}}{{namePascalCase}}Detail from "./components/listers/{{boundedContext.namePascalCase}}{{namePascalCase}}Detail"
     {{/aggregates}}
 
     {{#viewes}}
@@ -31,13 +31,13 @@ export default new Router({
         {{#aggregates}}
             {
                 path: '/{{namePlural}}',
-                name: '{{namePascalCase}}Manager',
-                component: {{namePascalCase}}Manager
+                name: '{{boundedContext.namePascalCase}}{{namePascalCase}}Manager',
+                component: {{boundedContext.namePascalCase}}{{namePascalCase}}Manager
             },
             {
                 path: '/{{namePlural}}/:id',
-                name: '{{namePascalCase}}Detail',
-                component: {{namePascalCase}}Detail
+                name: '{{boundedContext.namePascalCase}}{{namePascalCase}}Detail',
+                component: {{boundedContext.namePascalCase}}{{namePascalCase}}Detail
             },
         {{/aggregates}}
 
