@@ -49,7 +49,7 @@ const pluralCaseList = []
 
 {{#boundedContexts}}
     {{#aggregates}}
-pluralCaseList.push( {plural: "{{namePlural}}", pascal: "{{namePascalCase}}"} )
+pluralCaseList.push( {plural: "{{boundedContext.namePlural}}/{{namePlural}}", pascal: "{{boundedContext.namePascalCase}}{{namePascalCase}}"} )
     {{/aggregates}}
 
     {{#viewes}}
