@@ -74,7 +74,7 @@ path: frontend/src/components/listers
     const axios = require('axios').default;
 
     export default {
-        name: '{{namePascalCase}}Detail',
+        name: '{{boundedContext.namePascalCase}}{{namePascalCase}}Detail',
         components:{},
         props: {
         },
