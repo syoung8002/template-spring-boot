@@ -71,7 +71,7 @@ fileName: App.vue
                     <v-list-item
                         class="px-2"
                         key="{{namePlural}}"
-                        to="/{{namePlural}}"
+                        to="/{{boundedContext.namePlural}}/{{namePlural}}"
                         @click="changeUrl()"
                         color="primary"
                         style="font-weight:700;"
@@ -133,7 +133,7 @@ fileName: App.vue
                                             outlined
                                             rounded
                                             key="{{namePlural}}"
-                                            to="/{{namePlural}}"
+                                            to="/{{boundedContext.namePlural}}/{{namePlural}}"
                                             @click="changeUrl()"
                                             color="primary"
                                             style="font-weight:500; font-size:20px; padding:15px; border:solid 2px; max-width:250px; overflow:hidden"
