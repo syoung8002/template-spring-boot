@@ -76,7 +76,7 @@ fileName: App.vue
                         color="primary"
                         style="font-weight:700;"
                     >
-                        {{boundedContext.namePascalCase}}{{namePascalCase}}
+                        {{namePascalCase}}
                     </v-list-item>
 
     		    {{/aggregates}}
@@ -138,10 +138,10 @@ fileName: App.vue
                                             color="primary"
                                             style="font-weight:500; font-size:20px; padding:15px; border:solid 2px; max-width:250px; overflow:hidden"
                                         >
-                                            {{boundedContext.namePascalCase}}{{namePascalCase}}
+                                            {{namePascalCase}}
                                         </v-btn>
                                     </template>
-                                    <span>{{boundedContext.namePascalCase}}{{namePascalCase}}</span>
+                                    <span>{{namePascalCase}}</span>
                                 </v-tooltip>
                             </v-card-actions>
                         </v-card>
