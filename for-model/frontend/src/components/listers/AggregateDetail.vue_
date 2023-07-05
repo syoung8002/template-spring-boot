@@ -5,7 +5,7 @@ path: frontend/src/components/listers
 <template>
     <v-card outlined>
         <v-card-title>
-            {{boundedContext.namePascalCase}}{{namePascalCase}} # \{{item._links.self.href.split("/")[item._links.self.href.split("/").length - 1]}}
+            {{namePascalCase}} # \{{item._links.self.href.split("/")[item._links.self.href.split("/").length - 1]}}
         </v-card-title>
 
         <v-card-text>
