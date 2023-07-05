@@ -144,6 +144,7 @@ fileName: App.vue
                                     <span>{{namePascalCase}}</span>
                                 </v-tooltip>
                             </v-card-actions>
+                            <div style="margin-top:10px;">{{description}}</div>
                         </v-card>
                     {{/aggregates}}
 
