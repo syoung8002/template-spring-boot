@@ -7,9 +7,9 @@ fileName: App.vue
 </template>
 
 <script>
+import SNSApp from './SNSApp.vue'
 
 export default {
-    import SNSApp from './SNSApp.vue'
 
     components: {
         SNSApp
