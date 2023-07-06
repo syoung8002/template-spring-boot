@@ -5,6 +5,8 @@ Vue.use(Vuetify);
 
 const themeColors = {
     surface:'{{options.rootModel.uiStyle.palette.colors.surface.colorCode}}',
+    mainText:'{{options.rootModel.uiStyle.palette.colors.mainText.colorCode}}',
+    secondaryText:'{{options.rootModel.uiStyle.palette.colors.secondaryText.colorCode}}',
     primary: '{{options.rootModel.uiStyle.palette.colors.primary.colorCode}}',
     'primary-darken-1': '{{options.rootModel.uiStyle.palette.colors.primary-darken-1.colorCode}}',
     secondary: '{{options.rootModel.uiStyle.palette.colors.secondary.colorCode}}',
@@ -17,6 +19,8 @@ const themeColors = {
 
 const defaultColors = {
     surface: '#FFFFFF',
+    mainText:'#000000',
+    secondaryText:'#808080',
     primary: '#1976D2',
     'primary-darken-1': '#1565C0',
     secondary: '#424242',

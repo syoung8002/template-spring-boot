@@ -24,7 +24,7 @@ fileName: SNSApp.vue
                         {{ projectName }}
                     </span>
                 </v-toolbar-title>
-		{{#if uiStyle.logoImage}}
+		    {{#if uiStyle.logoImage}}
                 <div 
                     v-if="urlPath!=null" 
                     key="" 
@@ -39,15 +39,15 @@ fileName: SNSApp.vue
                         cover
                     ></v-img>
                 </div>
-		{{else}}
+		    {{else}}
                 <span v-if="urlPath!=null" 
                     class="mdi mdi-home" 
                     key="" 
                     to="/" 
                     @click="goHome()"
                     style="margin-left:10px; font-size:20px; cursor:pointer;"
-		></span> 
-		{{/if}}
+		        ></span> 
+		    {{/if}}
                 <v-spacer></v-spacer>
 
                 {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
