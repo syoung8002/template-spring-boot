@@ -3,8 +3,7 @@ fileName: {{boundedContext.namePascalCase}}{{namePascalCase}}.vue
 path: frontend/src/components
 ---
 <template>
-{{#aggregateRoot}}{{inputUI}}{{aggregateRoot}}
-123
+
     <v-card style="width:450px;" outlined color="surface">
         <template slot="progress">
             <v-progress-linear
