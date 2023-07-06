@@ -50,22 +50,23 @@ path: frontend/src/components
             >
                 Edit
             </v-btn>
+            {{#if (hasRestRepository commands)}}
+            {{#commands}}
             <v-btn
                     color="primary"
                     text
                     @click="save"
                     v-else
             >
-            {{#if (hasRestRepository commands)}}
-            {{#commands}}
             {{#isRestRepository}}
                 {{namePascalCase}}
             {{/isRestRepository}}
+            </v-btn>
             {{/commands}}
             {{else}}
                 Save
-            {{/if}}
             </v-btn>
+            {{/if}}
             <v-btn
                     color="primary"
                     text
