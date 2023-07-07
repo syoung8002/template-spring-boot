@@ -142,10 +142,10 @@ fileName: SNSApp.vue
                                             color="primary"
                                             style="font-weight:500; font-size:20px; padding:15px; border:solid 2px; max-width:250px; overflow:hidden"
                                         >
-                                            {{namePascalCase}}
+                                            {{displayName}}
                                         </v-btn>
                                     </template>
-                                    <span>{{namePascalCase}}</span>
+                                    <span>{{displayName}}</span>
                                 </v-tooltip>
                             </v-card-actions>
                             <div style="margin-top:10px;">{{description}}</div>
