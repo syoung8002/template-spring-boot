@@ -1,7 +1,13 @@
+forEach: BoundedContext
+fileName: application.yml
+path: {{name}}/src/main/resources
+---
 server:
   port: 8080
+  error:
+    include-message: always
 {{#circuitBreaker}}
-//<<< Resilency / Circuit Breaker
+##--< Resilency / Circuit Breaker
 feign:
   hystrix:
     enabled: true
@@ -9,7 +15,7 @@ hystrix:
   command:
     default:
       execution.isolation.thread.timeoutInMilliseconds: 500
-//>>> Resilency / Circuit Breaker
+##--> Resilency / Circuit Breaker
 {{/circuitBreaker}}
 spring:
   application:
@@ -22,11 +28,32 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+        implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+  kafka:
+    producer:
+      retries: 5
+      acks: all
+      properties:
+        enable:
+          idempotence: true   # Set Producer exactly once Trx
+    consumer:
+      properties:
+        spring.json.trusted.packages: "*"
+        isolation.level: read_committed         
   cloud:
     stream:
       kafka:
         binder:
           brokers: localhost:9092
+          transaction:
+            transactionIdPrefix: tx-${random.uuid}   
+        bindings:
+          event-in:
+            consumer:
+              autoCommitOffset: false    # Disable Offset auto commit
+              enableDlq: true
+              dlqName: dlq-{{options.package}}
+              dlqPartitions: 1         
         streams:
           binder:
             configuration:
@@ -38,14 +65,14 @@ spring:
       bindings:
         event-in:
           group: {{name}}
-//<<< EDA / Topic Name
-          destination: {{options.package}}
-//>>> EDA / Topic Name
+##--< EDA / Topic Name
+          destination: {{options.rootPackage}}
+##--> EDA / Topic Name
           contentType: application/json
         event-out:
-//<<< EDA / Topic Name
-          destination: {{options.package}}
-//>>> EDA / Topic Name
+##--< EDA / Topic Name
+          destination: {{options.rootPackage}}
+##--> EDA / Topic Name
           contentType: application/json
 
 logging:
@@ -53,11 +80,11 @@ logging:
     org.hibernate.type: trace
     org.springframework.cloud: debug
 
-{{#checkCommandRelation relationCommandInfo}}
 api:
   url:
-    {{#setApiUrl relationCommandInfo true}}{{/setApiUrl}}
-{{/checkCommandRelation}}
+  {{#sagaServiceUrl policies}}
+    {{name}}: localhost:{{portGenerated}}
+  {{/sagaServiceUrl}}
 
 server:
   port: {{portGenerated}}
@@ -69,11 +96,31 @@ server:
 ---
 spring:
   profiles: docker
+  kafka:
+    producer:
+      retries: 5
+      acks: all
+      properties:
+        enable:
+          idempotence: true   # Set Producer exactly once Trx
+    consumer:
+      properties:
+        spring.json.trusted.packages: "*"
+        isolation.level: read_committed    
   cloud:
     stream:
       kafka:
         binder:
           brokers: my-kafka:9092
+          transaction:
+            transactionIdPrefix: tx-${random.uuid}   
+        bindings:
+          event-in:
+            consumer:
+              autoCommitOffset: false    # Disable Offset auto commit
+              enableDlq: true
+              dlqName: dlq-{{options.package}}
+              dlqPartitions: 1              
         streams:
           binder:
             configuration:
@@ -85,20 +132,42 @@ spring:
       bindings:
         event-in:
           group: {{name}}
-          destination: {{options.package}}
+          destination: {{options.rootPackage}}
           contentType: application/json
         event-out:
-          destination: {{options.package}}
+          destination: {{options.rootPackage}}
           contentType: application/json
 
-{{#checkCommandRelation relationCommandInfo}}
+
+
 api:
   url:
-    {{#setApiUrl relationCommandInfo false}}{{/setApiUrl}}
-{{/checkCommandRelation}}
+    {{#sagaServiceUrl policies}}
+    {{name}}: {{url name}}:8080
+    {{/sagaServiceUrl}}
 
 
 <function>
+window.$HandleBars.registerHelper('sagaServiceUrl', function (policies, options) {
+    let lists = [];
+    let str = '';
+    let policy = policies.find(x=>x.isSaga);
+    if(policy){
+        policy.outgoingCommandInfo.forEach(function(item) {
+            if(item && item.commandValue && item.commandValue.boundedContext && !lists.find(x=>x.name == item.commandValue.boundedContext.name)){
+                lists.push(item.commandValue.boundedContext);
+            }
+        });
+    }
+    
+    lists.forEach(function(list){
+        str += options.fn(list);
+    });
+    
+    
+    return str;
+});
+
 window.$HandleBars.registerHelper('checkException', function (aggregates) {
   try {
     if(!aggregates) {
@@ -136,13 +205,14 @@ window.$HandleBars.registerHelper('checkCommandRelation', function (relationComm
 
 window.$HandleBars.registerHelper('setApiUrl', function (relationCommandInfo, isPortGen) {
   var text = "";
-
   relationCommandInfo.forEach(function(item) {
     if(!text.includes(item.commandValue.boundedContext.name)) {
+      // text += "    " + item.commandValue.boundedContext.name + ": " + item.commandValue.boundedContext.name;
+      text += "    " + item.commandValue.boundedContext.name + ": " + "localhost";
       if(isPortGen) {
-        text += item.commandValue.boundedContext.name + ": localhost:" + item.commandValue.boundedContext.portGenerated + "\n";
+        text += ":" + item.commandValue.boundedContext.portGenerated + "\n";
       } else {
-        text += item.commandValue.boundedContext.name + ":8080\n";
+        text += ":8080\n";
       }
     }
   })
