@@ -124,7 +124,11 @@ fileName: SNSApp.vue
                                     class="mx-auto"
                                     size="80"
                                     style="margin-top:80px;"
+                                {{#if uiStyle.icon}}
+                                ><span class="material-symbols-outlined" style="font-size:60px; color:#9575CD;">{{uiStyle.icon}}</span>
+                                {{else}}
                                 ><span class="mdi mdi-apps" style="font-size:60px; color:#9575CD;"></span>
+				                {{/if}}
                                 </v-list-item-avatar>
                             </v-list-item>
 
