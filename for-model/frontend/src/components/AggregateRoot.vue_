@@ -48,7 +48,7 @@ path: frontend/src/components
                     @click="edit"
                     v-if="!editMode"
             >
-                Edit
+                수정
             </v-btn>
             {{#if (hasRestRepository commands)}}
             {{#commands}}
@@ -59,12 +59,12 @@ path: frontend/src/components
                     v-else
             >
             {{#isRestRepository}}
-                {{namePascalCase}}
+                {{displayName}}
             {{/isRestRepository}}
             </v-btn>
             {{/commands}}
             {{else}}
-                Save
+                저장
             </v-btn>
             {{/if}}
             <v-btn
@@ -73,7 +73,7 @@ path: frontend/src/components
                     @click="remove"
                     v-if="!editMode"
             >
-                Delete
+                삭제
             </v-btn>
             <v-btn
                     color="primary"
@@ -81,7 +81,7 @@ path: frontend/src/components
                     @click="editMode = false"
                     v-if="editMode && !isNew"
             >
-                Cancel
+                취소
             </v-btn>
         </v-card-actions>
         <v-card-actions>
