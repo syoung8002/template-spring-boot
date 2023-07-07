@@ -414,6 +414,13 @@ path: frontend/src/components
 
 
 <function>
+    window.$HandleBars.registerHelper('ifNotNull', function (displayName, name) {
+        if(displayName){
+	    return displayName;
+        }else{
+	    return name;
+        }
+    })
 
     window.$HandleBars.registerHelper('checkCommandPut', function (info, options) {
         if(info.endsWith('PUT')){
