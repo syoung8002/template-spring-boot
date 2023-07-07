@@ -24,22 +24,6 @@ fileName: SNSApp.vue
                         {{ projectName }}
                     </span>
                 </v-toolbar-title>
-		    {{#if uiStyle.logoImage}}
-                <div 
-                    v-if="urlPath!=null" 
-                    key="" 
-                    to="/" 
-                    @click="goHome()"
-                    style="margin-left:10px; width: 3%; height: 100%;  cursor:pointer; border-radius: 50%; overflow: hidden;"
-                >
-                    <v-img
-                        class="bg-white"
-                        :aspect-ratio="1"
-                        src="{{options.rootModel.uiStyle.logoImage.url}}"
-                        cover
-                    ></v-img>
-                </div>
-		    {{else}}
                 <span v-if="urlPath!=null" 
                     class="mdi mdi-home" 
                     key="" 
@@ -47,7 +31,6 @@ fileName: SNSApp.vue
                     @click="goHome()"
                     style="margin-left:10px; font-size:20px; cursor:pointer;"
 		        ></span> 
-		    {{/if}}
                 <v-spacer></v-spacer>
 
                 {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
@@ -103,7 +86,7 @@ fileName: SNSApp.vue
                 <router-view></router-view>
             </v-container>
             <v-container v-else class="py-8 px-6 mt-10" fluid>
-                {{#if uiStyle.logoImage}}
+                {{#if options.rootModel.uiStyle.logoImage}}
                 <div style="width:86%; margin-left:7%; margin-top:-40px;">
                     <v-img style="width:100%; height:300px;"
                         src="{{options.rootModel.uiStyle.logoImage.url}}"
@@ -124,7 +107,7 @@ fileName: SNSApp.vue
                                     class="mx-auto"
                                     size="80"
                                     style="margin-top:80px;"
-                                {{#if uiStyle.icon}}
+                                    {{#if uiStyle.icon}}
                                 ><span class="material-symbols-outlined" style="font-size:60px; color:#9575CD;">{{uiStyle.icon}}</span>
                                 {{else}}
                                 ><span class="mdi mdi-apps" style="font-size:60px; color:#9575CD;"></span>
