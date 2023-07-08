@@ -147,7 +147,7 @@ fileName: SNSApp.vue
                         >
                             <v-list-item>
                                 <v-list-item-avatar 
-                                    class="mx-auto"
+                                    class="mx-auto border-color"
                                     size="80"
                                     style="margin-top:80px;"
                                 ><span class="mdi mdi-apps" style="font-size:60px; color:#9575CD;"></span>
