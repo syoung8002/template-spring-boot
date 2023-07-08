@@ -3,11 +3,11 @@
 }
 
 .main-text-color {
-    color: {{options.rootModel.uiStyle.palette.colors.mainText.colorCode}};
+    color: {{options.rootModel.uiStyle.palette.colors.mainText.colorCode}} !important;
 }
 
 .secondary-text-color {
-    color: {{options.rootModel.uiStyle.palette.colors.secondaryText.colorCode}};
+    color: {{options.rootModel.uiStyle.palette.colors.secondaryText.colorCode}} !important;
 }
 
 .v-application {
