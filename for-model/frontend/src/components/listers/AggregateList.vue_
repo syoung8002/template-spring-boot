@@ -4,6 +4,37 @@ path: frontend/src/components/listers
 ---
 <template>
     <div>
+    <h1>{{displayName}}</h1>
+        <v-row>
+            <v-card
+                class="mx-auto"
+                style="height:300px; width:300px; margin-bottom:20px; text-align: center;"
+                outlined
+            >
+                <v-list-item>
+                    <v-list-item-avatar 
+                        class="mx-auto"
+                        size="80"
+                        style="margin-top:80px;"
+                    ><v-icon color="primary" x-large>mdi-plus</v-icon>
+                    </v-list-item-avatar>
+                </v-list-item>
+
+                <v-card-actions>
+                    <v-btn 
+                        v-on="on"
+                        class="mx-auto"
+                        outlined
+                        rounded
+                        @click="openDialog=true;"
+                        color="primary"
+                        style="font-weight:500; font-size:20px; padding:15px; border:solid 2px; max-width:250px; overflow:hidden"
+                    >
+                        {{displayName}} 등록
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-row>
         <v-list two-line>
             <template>
                 <v-list-item v-for="(data, n) in values" :key="n">
@@ -40,20 +71,6 @@ path: frontend/src/components/listers
                         hide-overlay
                         transition="dialog-bottom-transition"
                 >
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-fab-transition>
-                            <v-btn
-                                    color="primary"
-                                    fab
-                                    dark
-                                    large
-                                    style="position:absolute; bottom: 5%; right: 2%; z-index:99"
-                                    @click="openDialog=true;"
-                            >
-                                <v-icon v-bind="attrs" v-on="on">mdi-plus</v-icon>
-                            </v-btn>
-                        </v-fab-transition>
-                    </template>
 
                     <{{boundedContext.namePascalCase}}{{namePascalCase}} :offline="offline" class="video-card" :isNew="true" :editMode="true" v-model="newValue" @add="append" v-if="tick"/>
                 
