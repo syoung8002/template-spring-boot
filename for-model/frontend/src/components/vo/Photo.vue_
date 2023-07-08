@@ -2,7 +2,7 @@ fileName: Photo.vue
 path: frontend/src/components/vo
 ---
 <template>
-    <div>
+    <div style="margin: 0 -15px 0 -15px;">
         <v-card-title v-if="editMode">
             \{{label}}
         </v-card-title>
@@ -17,7 +17,7 @@ path: frontend/src/components/vo
 
         <v-card-text v-if="value">
             <div v-if="editMode">
-                <v-text-field label="이미지 이름" v-model="value.imgName"/>
+                <v-text-field label="{{displayName}}" v-model="value.imgName"/>
                 <slot name="actions"></slot>
             </div>
         </v-card-text>
