@@ -2,6 +2,14 @@
     border:solid {{options.rootModel.uiStyle.palette.colors.secondary.colorCode}} 1px !important;
 }
 
+.main-text-color {
+    color: {{options.rootModel.uiStyle.palette.colors.mainText.colorCode}};
+}
+
+.secondary-text-color {
+    color: {{options.rootModel.uiStyle.palette.colors.secondaryText.colorCode}};
+}
+
 .v-application {
     background-color: {{options.rootModel.uiStyle.palette.colors.info.colorCode}} !important;
 }
