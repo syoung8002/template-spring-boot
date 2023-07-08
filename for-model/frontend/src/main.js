@@ -8,6 +8,7 @@ import router from './router';
 import Keycloak from 'keycloak-js';
 {{/if}}
 Vue.config.productionTip = false;
+require('./GlobalStyle.css');
 
 const axios = require("axios").default;
 
