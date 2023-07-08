@@ -68,39 +68,40 @@ path: frontend/src/components
             >
                 수정
             </v-btn>
-            {{#if (hasRestRepository commands)}}
-            {{#commands}}
-            <v-btn
-                color="primary"
-                text
-                @click="save"
-                v-else
-            >
-            {{#isRestRepository}}
-                {{displayName}}
-            {{/isRestRepository}}
-            </v-btn>
-            {{/commands}}
-            {{else}}
-                저장
-            </v-btn>
-            {{/if}}
-            <v-btn
-                color="primary"
-                text
-                @click="remove"
-                v-if="!editMode"
-            >
-                삭제
-            </v-btn>
-            <v-btn
-                color="primary"
-                text
-                @click="editMode = false"
-                v-if="editMode && !isNew"
-            >
-                취소
-            </v-btn>
+            <div v-else>
+                {{#if (hasRestRepository commands)}}
+                {{#commands}}
+                <v-btn
+                    color="primary"
+                    text
+                    @click="save"
+                >
+                {{#isRestRepository}}
+                    {{displayName}}
+                {{/isRestRepository}}
+                </v-btn>
+                {{/commands}}
+                {{else}}
+                    저장
+                </v-btn>
+                {{/if}}
+                <v-btn
+                    color="primary"
+                    text
+                    @click="remove"
+                    v-if="!editMode"
+                >
+                    삭제
+                </v-btn>
+                <v-btn
+                    color="primary"
+                    text
+                    @click="editMode = false"
+                    v-if="editMode && !isNew"
+                >
+                    취소
+                </v-btn>
+            </div>
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
