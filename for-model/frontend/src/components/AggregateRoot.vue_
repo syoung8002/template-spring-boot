@@ -16,9 +16,6 @@ path: frontend/src/components
         <v-card-title v-if="value._links">
             {{#ifNotNull displayName namePascalCase}}{{/ifNotNull}} # \{{value._links.self.href.split("/")[value._links.self.href.split("/").length - 1]}}
         </v-card-title >
-        <v-card-title v-else>
-            
-        </v-card-title >
         <v-card v-else
             class="mx-auto"
             outlined
@@ -37,11 +34,7 @@ path: frontend/src/components
                         {{/if}}
                     </v-list-item-avatar>
                     <h1 class="align-self-center ml-3">{{#ifNotNull displayName namePascalCase}}{{/ifNotNull}}</h1>
-                    {{#boundedContexts}}
-                    {{#aggregates}}
                     <div class="secondary-text-color" style="margin-left:30px;">{{description}}</div>
-                    {{/aggregates}}
-                    {{/boundedContexts}}
                 </v-list-item>
             </v-row>
         </v-card>
