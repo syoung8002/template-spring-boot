@@ -16,8 +16,8 @@ path: frontend/src/components
             {{#ifNotNull displayName namePascalCase}}{{/ifNotNull}} # \{{value._links.self.href.split("/")[value._links.self.href.split("/").length - 1]}}
         </v-card-title >
         <v-card-title v-else>
-            {{#ifNotNull displayName namePascalCase}}
-        </v-card-title >
+            {{#ifNotNull displayName namePascalCase}}{{/ifNotNull}}
+        </v-card-title >        
 
         <v-card-text>
         {{#aggregateRoot.fieldDescriptors}}
@@ -408,7 +408,7 @@ path: frontend/src/components
             },
             {{/setOperations}}
             {{/aggregateRoot.operations}}
-        }
+        },
     }
 </script>
 
