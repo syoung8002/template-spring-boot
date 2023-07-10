@@ -21,7 +21,7 @@ fileName: SNSApp.vue
                         >
                             <div style="line-height:100%;">≡</div>
                         </v-app-bar-nav-icon>
-                        {{ projectName }}
+                        {{options.rootModel.uiStyle.serviceDescription.title}}
                     </span>
                 </v-toolbar-title>
                 <span v-if="urlPath!=null" 
