@@ -52,15 +52,15 @@ path: frontend/src/components
             <div v-else>
                 {{#if (hasRestRepository commands)}}
                 {{#commands}}
+                {{#isRestRepository}}
                 <v-btn
                     color="primary"
                     text
                     @click="save"
                 >
-                {{#isRestRepository}}
                     {{displayName}}
-                {{/isRestRepository}}
                 </v-btn>
+                {{/isRestRepository}}
                 {{/commands}}
                 {{else}}
                 <v-btn
