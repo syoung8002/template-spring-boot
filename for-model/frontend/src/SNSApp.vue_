@@ -92,7 +92,7 @@ fileName: SNSApp.vue
                         src="{{options.rootModel.uiStyle.logoImage.url}}"
                     ></v-img>
                     {{/if}}
-                    <div style="font-size: 24px; font-weight:700; margin:20px 0px 25px 0px;">"지금까지 본 적 없는 최고의 서비스를 체험하세요! 우리의 서비스는 최신 기술과 혁신적인 아이디어로 선보입니다. 언제 어디서든 접속하고 편리한 이용을 즐기세요. 지금 당장 저희와 함께 차원이 다른 서비스를 경험해 보세요!"</div>
+                    <div style="font-size: 24px; font-weight:700; margin:20px 0px 25px 0px;">{{options.rootModel.uiStyle.serviceDescription.serviceDescription}}</div>
                 </div>
                 <v-row>
                 {{#boundedContexts}}
