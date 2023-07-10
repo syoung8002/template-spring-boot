@@ -3,7 +3,7 @@ fileName: {{boundedContext.namePascalCase}}{{namePascalCase}}.vue
 path: frontend/src/components
 ---
 <template>
-    <v-card style="width:450px;" outlined color="surface">
+    <v-card style="width:450px;" outlined>
         <template slot="progress">
             <v-progress-linear
                     color="primary-darker-1"

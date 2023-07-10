@@ -104,7 +104,7 @@ fileName: SNSApp.vue
                         >
                             <v-list-item>
                                 <v-list-item-avatar 
-                                    class="mx-auto"
+                                    class="mx-auto border-color"
                                     size="80"
                                     style="margin-top:80px;"
                                     {{#if uiStyle.icon}}
