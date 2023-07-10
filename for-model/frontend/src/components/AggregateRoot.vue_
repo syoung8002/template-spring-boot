@@ -408,7 +408,7 @@ path: frontend/src/components
             },
             {{/setOperations}}
             {{/aggregateRoot.operations}}
-        },
+        }
     }
 </script>
 
