@@ -1,5 +1,5 @@
 forEach: Enumeration
-fileName: {{namePascalCase}}.java
+fileName: {{pascalCase name}}.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/domain
 mergeType: template
 ---
@@ -12,7 +12,7 @@ import lombok.Data;
 import java.util.Date;
 
 
-public enum {{namePascalCase}} {
+public enum {{pascalCase name}} {
 
     {{#items}}
     {{#setItems value ../items}}{{/setItems}}
