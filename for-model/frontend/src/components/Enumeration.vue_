@@ -1,22 +1,22 @@
 forEach: Enumeration
-fileName: {{namePascalCase}}.vue
+fileName: {{pascalCase name}}.vue
 path: frontend/src/components
 ---
 <template>
     <div style="margin: 0 -15px 0 -15px;">
         <v-card-title>
-            {{namePascalCase}}
+            {{pascalCase name}}
         </v-card-title>
         <v-card-text>
             <div v-if="editMode" style="margin-top:-20px;">
                 <v-select
                         v-model="newValue"
-                        :label="'{{namePascalCase}}'"
-                        :items="{{nameCamelCase}}List"
+                        :label="'name'"
+                        :items="{{pascalCase name}}List"
                 ></v-select>
             </div>
             <div v-else style="margin-top:-20px;">
-                {{namePascalCase}} : \{{ value }}
+                {{pascalCase name}} : \{{ value }}
             </div>
         </v-card-text>
     </div>
@@ -24,7 +24,7 @@ path: frontend/src/components
 
 <script>
     export default {
-        name: '{{namePascalCase}}',
+        name: '{{pascalCase name}}',
         components:{},
         props: {
             value: [Object, String, Number, Boolean, Array],
