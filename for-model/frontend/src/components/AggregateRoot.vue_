@@ -63,7 +63,12 @@ path: frontend/src/components
                 </v-btn>
                 {{/commands}}
                 {{else}}
-                    저장
+                <v-btn
+                    color="primary"
+                    text
+                    @click="save"
+                >
+                저장
                 </v-btn>
                 {{/if}}
                 <v-btn
