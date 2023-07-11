@@ -87,7 +87,7 @@ fileName: SNSApp.vue
             <v-container style="padding:0px;" v-else fluid>
                 <div style="width:100%; margin:0px 0px 20px 0px; position: relative;">
                     <v-img style="width:100%; height:300px;"
-                        src="{{#if options.rootModel.uiStyle.logoImage}}{{options.rootModel.uiStyle.logoImage.url}}{{/if}}"
+                        src="{{#if options.rootModel.uiStyle.logoImage}}{{{options.rootModel.uiStyle.logoImage.url}}}{{/if}}"
                     ></v-img>
                     <div class="App-main-text-overlap">{{options.rootModel.uiStyle.serviceDescription.title}}</div>
                     <div class="App-sub-text-overlap">{{options.rootModel.uiStyle.serviceDescription.serviceDescription}}</div>
