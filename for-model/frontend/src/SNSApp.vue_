@@ -235,9 +235,16 @@ export default {
         changeUrl() {
             var path = document.location.href.split("#/")
             this.urlPath = path[1];
+            this.flipped.fill(false);
         },
         goHome() {
             this.urlPath = null;
+        },
+        flipCard(index) {
+            this.$set(this.flipped, index, true);
+        },
+        unflipCard(index) {
+            this.$set(this.flipped, index, false);
         },
         {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
         logout(){
