@@ -136,7 +136,7 @@ fileName: SNSApp.vue
                         </div>
                     </v-col>
                 </v-row>
-                <v-row>
+                <!-- <v-row>
                     {{#boundedContexts}}
                     {{#aggregates}}
                     <v-col class="d-flex justify-center">
@@ -220,7 +220,7 @@ fileName: SNSApp.vue
                     </v-card>
                     {{/viewes}}
                     {{/boundedContexts}}
-                </v-row>
+                </v-row> -->
             </v-container>
         </v-main>
     </v-app>
