@@ -202,6 +202,7 @@ export default {
         components: [],
         sideBar: true,
         urlPath: null,
+        flipped: [],
         {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
         username: '',
         {{else}}
@@ -221,6 +222,11 @@ export default {
       }
       {{else}}
       {{/if}}
+    },
+    watch: {
+        cards(newCards) {
+            this.flipped = new Array(newCards.length).fill(false);
+        },
     },
 
     mounted() {
