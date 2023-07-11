@@ -86,91 +86,96 @@ fileName: SNSApp.vue
             </v-container>
             <v-container style="padding:0px;" v-else fluid>
                 <div style="width:100%; margin:0px 0px 20px 0px; position: relative;">
-                    {{#if options.rootModel.uiStyle.logoImage}}
                     <v-img style="width:100%; height:300px;"
-                        src="{{options.rootModel.uiStyle.logoImage.url}}"
+                        src="{{#if options.rootModel.uiStyle.logoImage}}{{{options.rootModel.uiStyle.logoImage.url}}}{{/if}}"
                     ></v-img>
-                    {{/if}}
                     <div class="App-main-text-overlap">{{options.rootModel.uiStyle.serviceDescription.title}}</div>
                     <div class="App-sub-text-overlap">{{options.rootModel.uiStyle.serviceDescription.serviceDescription}}</div>
                 </div>
                 <v-row>
-                {{#boundedContexts}}
+                    {{#boundedContexts}}
                     {{#aggregates}}
-                        <v-card
-                            class="mx-auto"
-                            style="height:300px; width:300px; margin-bottom:20px; text-align: center;"
-                            outlined
+                    <v-col class="d-flex justify-center">
+                        <div 
+                            class="flip-card"
+                            @mouseover="flipCard(index)"
+                            @mouseleave="unflipCard(index)"
+                            :class="{ 'is-flipped': flipped[index] }"
+                            v-for="(aggregate, index) in aggregates"
                         >
-                            <v-list-item>
-                                <v-list-item-avatar 
-                                    class="mx-auto border-color"
-                                    size="80"
-                                    style="margin-top:80px;"
-                                    {{#if uiStyle.icon}}
-                                ><span class="material-symbols-outlined" style="font-size:60px; color:#9575CD;">{{uiStyle.icon}}</span>
-                                {{else}}
-                                ><span class="mdi mdi-apps" style="font-size:60px; color:#9575CD;"></span>
-				                {{/if}}
-                                </v-list-item-avatar>
-                            </v-list-item>
-
-                            <v-card-actions>
-                                <v-tooltip bottom>
-                                    <template v-slot:activator="{ on }">
-                                        <v-btn 
-                                            v-on="on"
-                                            class="mx-auto"
-                                            outlined
-                                            rounded
-                                            key="{{namePlural}}"
-                                            to="/{{boundedContext.namePlural}}/{{namePlural}}"
-                                            @click="changeUrl()"
-                                            color="primary"
-                                            style="font-weight:500; font-size:20px; padding:15px; border:solid 2px; max-width:250px; overflow:hidden"
-                                        >
-                                            {{displayName}}
-                                        </v-btn>
-                                    </template>
-                                    <span>{{displayName}}</span>
-                                </v-tooltip>
-                            </v-card-actions>
-                            <div style="margin-top:10px;">{{description}}</div>
-                        </v-card>
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <v-card
+                                        class="mx-auto"
+                                        style="width:300px; min-height: 310px; margin-bottom:20px; text-align: center; border-radius: 10px;"
+                                        outlined
+                                    >
+                                        <v-list-item style="padding:15px; margin:0px;">
+                                            <v-img style="width:100%; height:300px;"
+                                                src="{{#if options.rootModel.uiStyle.logoImage}}{{{options.rootModel.uiStyle.logoImage.url}}}{{/if}}"
+                                            ></v-img>
+                                        </v-list-item>
+                                        <div style="text-align: left; padding:10px 15px 15px 15px; margin-top:-10px;">
+                                            <h2>{{displayName}}</h2>
+                                            <div>{{description}}</div>
+                                        </div>
+                                    </v-card>
+                                </div>
+                                <div class="flip-card-back">
+                                    <v-card
+                                    color="primary"
+                                        class="mx-auto"
+                                        style="width:300px; min-height: 310px; margin-bottom:20px; text-align: center; border-radius: 10px;"
+                                        outlined
+                                        key="{{namePlural}}"
+                                        to="/{{boundedContext.namePlural}}/{{namePlural}}"
+                                        @click="changeUrl()"
+                                    >
+                                        <v-list-item style="padding:15px; margin:0px;">
+                                            <v-img style="height:120px; border-radius: 10px;"
+                                                src="{{#if options.rootModel.uiStyle.logoImage}}{{{options.rootModel.uiStyle.logoImage.url}}}{{/if}}"
+                                            ></v-img>
+                                        </v-list-item>
+                                        <h2 style="color:white;">{{displayName}} 관리</h2>
+                                    </v-card>
+                                </div>
+                            </div>
+                        </div>
+                    </v-col>
                     {{/aggregates}}
 
                     {{#viewes}}
-                        <v-card
-                            class="mx-auto"
-                            style="height:300px; width:300px; margin-bottom:20px;"
-                            outlined
-                        >
-                            <v-list-item>
-                                <v-list-item-avatar 
-                                    class="mx-auto border-color"
-                                    size="80"
-                                    style="margin-top:80px;"
-                                ><span class="mdi mdi-apps" style="font-size:60px; color:#9575CD;"></span>
-                                </v-list-item-avatar>
-                            </v-list-item>
+                    <v-card
+                        class="mx-auto"
+                        style="height:300px; width:300px; margin-bottom:20px;"
+                        outlined
+                    >
+                        <v-list-item>
+                            <v-list-item-avatar 
+                                class="mx-auto border-color"
+                                size="80"
+                                style="margin-top:80px;"
+                            ><span class="mdi mdi-apps" style="font-size:60px; color:#9575CD;"></span>
+                            </v-list-item-avatar>
+                        </v-list-item>
 
-                            <v-card-actions>
-                                <v-btn 
-                                    class="mx-auto"
-                                    outlined
-                                    rounded
-                                    key="{{namePlural}}"
-                                    to="/{{namePlural}}"
-                                    @click="changeUrl()"
-                                    color="primary"
-                                    style="font-weight:500; font-size:20px; padding:15px;"
-                                >
-                                    {{namePascalCase}}
-                                </v-btn>
-                            </v-card-actions>
-                        </v-card>
+                        <v-card-actions>
+                            <v-btn 
+                                class="mx-auto"
+                                outlined
+                                rounded
+                                key="{{namePlural}}"
+                                to="/{{namePlural}}"
+                                @click="changeUrl()"
+                                color="primary"
+                                style="font-weight:500; font-size:20px; padding:15px;"
+                            >
+                                {{namePascalCase}}
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
                     {{/viewes}}
-                {{/boundedContexts}}
+                    {{/boundedContexts}}
                 </v-row>
             </v-container>
         </v-main>
@@ -192,6 +197,7 @@ export default {
         components: [],
         sideBar: true,
         urlPath: null,
+        flipped: [],
         {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
         username: '',
         {{else}}
@@ -212,6 +218,11 @@ export default {
       {{else}}
       {{/if}}
     },
+    watch: {
+        cards(newCards) {
+            this.flipped = new Array(newCards.length).fill(false);
+        },
+    },
 
     mounted() {
         var me = this;
@@ -225,9 +236,16 @@ export default {
         changeUrl() {
             var path = document.location.href.split("#/")
             this.urlPath = path[1];
+            this.flipped.fill(false);
         },
         goHome() {
             this.urlPath = null;
+        },
+        flipCard(index) {
+            this.$set(this.flipped, index, true);
+        },
+        unflipCard(index) {
+            this.$set(this.flipped, index, false);
         },
         {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
         logout(){
