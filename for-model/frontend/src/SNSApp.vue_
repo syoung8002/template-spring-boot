@@ -108,11 +108,11 @@ fileName: SNSApp.vue
                                         outlined
                                     >
                                         <v-list-item style="padding:15px; margin:0px;">
-                                            <v-img style="width:100%; height:300px;" src="{{#boundedContexts}}{{#aggregates}}{{#if options.rootModel.uiStyle.logoImage}}{{{options.rootModel.uiStyle.logoImage.url}}}{{/if}}{{/aggregates}}{{/boundedContexts}}"></v-img>
+                                            <v-img style="width:100%; height:300px;" src="{{#if options.rootModel.uiStyle.logoImage}}{{{options.rootModel.uiStyle.logoImage.url}}}"></v-img>
                                         </v-list-item>
                                         <div style="text-align: left; padding:10px 15px 15px 15px; margin-top:-10px;">
-                                            <h2>{{ aggregate.title }}</h2>
-                                            <div>{{ aggregate.description }}</div>
+                                            <h2>\{{ aggregate.title }}</h2>
+                                            <div>\{{ aggregate.description }}</div>
                                         </div>
                                     </v-card>
                                 </div>
@@ -127,9 +127,9 @@ fileName: SNSApp.vue
                                         @click="changeUrl()"
                                     >
                                         <v-list-item style="padding:15px; margin:0px;">
-                                            <v-img style="height:120px; border-radius: 10px;" src="{{#boundedContexts}}{{#aggregates}}{{#if options.rootModel.uiStyle.logoImage}}{{{options.rootModel.uiStyle.logoImage.url}}}{{/if}}{{/aggregates}}{{/boundedContexts}}"></v-img>
+                                            <v-img style="height:120px; border-radius: 10px;" src="{{#if options.rootModel.uiStyle.logoImage}}{{{options.rootModel.uiStyle.logoImage.url}}}"></v-img>
                                         </v-list-item>
-                                        <h2 style="color:white;">{{ aggregate.title }} 관리</h2>
+                                        <h2 style="color:white;">\{{ aggregate.title }} 관리</h2>
                                     </v-card>
                                 </div>
                             </div>
