@@ -93,7 +93,7 @@ fileName: SNSApp.vue
                     <div class="App-sub-text-overlap">{{options.rootModel.uiStyle.serviceDescription.serviceDescription}}</div>
                 </div>
                 <v-row>
-                    <v-col cols="4" class="d-flex justify-center" v-for="(aggregate, index) in aggregates" :key="index">
+                    <v-col cols="4" class="d-flex justify-center" v-for="(aggregate, index) in aggregate" :key="index">
                         <div 
                             class="flip-card"
                             @mouseover="flipCard(index)"
@@ -108,7 +108,7 @@ fileName: SNSApp.vue
                                         outlined
                                     >
                                         <v-list-item style="padding:15px; margin:0px;">
-                                            <v-img style="width:100%; height:120px; border-radius: 10px;" :src=aggregate.ImageUrl></v-img>
+                                            <v-img style="width:100%; height:120px; border-radius: 10px;" :src="aggregate.ImageUrl"></v-img>
                                         </v-list-item>
                                         <div style="text-align: left; padding:10px 15px 15px 15px; margin-top:-10px;">
                                             <h2>\{{ aggregate.title }}</h2>
@@ -127,7 +127,7 @@ fileName: SNSApp.vue
                                         @click="changeUrl()"
                                     >
                                         <v-list-item style="padding:15px; margin:0px;">
-                                            <v-img style="height:120px; border-radius: 10px;" :src="aggregate.ImageUrl"></v-img>
+                                            <v-img style="width:100%; height:120px; border-radius: 10px;" :src="aggregate.ImageUrl"></v-img>
                                         </v-list-item>
                                         <h2 style="color:white;">\{{ aggregate.title }} 관리</h2>
                                     </v-card>
@@ -158,7 +158,7 @@ export default {
         urlPath: null,
         flipped: [],
         ImageUrl: '{{#if options.rootModel.uiStyle.logoImage}}{{{options.rootModel.uiStyle.logoImage.url}}}{{/if}}',
-        aggregates: [
+        aggregate: [
             {{#boundedContexts}}
             {{#aggregates}}
             { 
