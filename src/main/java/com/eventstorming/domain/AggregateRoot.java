@@ -28,7 +28,7 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
     {{#aggregateRoot.fieldDescriptors}}
     {{^isVO}}{{#isKey}}
     @Id
-    //@GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     {{/isKey}}{{/isVO}}
     {{#isLob}}@Lob{{/isLob}}
     {{#if (isPrimitive className)}}{{#isList}}{{/isList}}{{/if}}
