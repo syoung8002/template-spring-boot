@@ -95,7 +95,8 @@ spring:
 {{#checkCommandRelation relationCommandInfo}}
 api:
   url:
-    {{#setApiUrl relationCommandInfo false}}{{/setApiUrl}}
+    {{#setApiUrl relationCommandInfo false}}
+    {{/setApiUrl}}
 {{/checkCommandRelation}}
 
 
