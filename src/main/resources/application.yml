@@ -93,12 +93,12 @@ spring:
           destination: {{options.package}}
           contentType: application/json
 
-{{#checkCommandRelation relationCommandInfo}}
+   {{#checkCommandRelation relationCommandInfo}}
 api:
   url:
     {{#setApiUrl relationCommandInfo false}}
     {{/setApiUrl}}
-{{/checkCommandRelation}}
+   {{/checkCommandRelation}}
 
 
 <function>
