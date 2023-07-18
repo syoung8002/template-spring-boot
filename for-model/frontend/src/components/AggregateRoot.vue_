@@ -23,7 +23,11 @@ path: frontend/src/components
         {{#aggregateRoot.fieldDescriptors}}
         {{#if (isNotId nameCamelCase)}}
         {{#if (isPrimitive className)}}
+            {{#if isKey}}
+            <{{getPrimitiveType className}} v-if="editMode" label="{{displayName}}" v-model="value.{{nameCamelCase}}" :editMode="editMode" :inputUI="'{{inputUI}}'"/>
+            {{else}}
             <{{getPrimitiveType className}} label="{{displayName}}" v-model="value.{{nameCamelCase}}" :editMode="editMode" :inputUI="'{{inputUI}}'"/>
+            {{/if}}
         {{else}}
             {{#checkVO className}}
             <{{className}} offline label="{{displayName}}" v-model="value.{{nameCamelCase}}" :editMode="editMode" @change="change"/>
