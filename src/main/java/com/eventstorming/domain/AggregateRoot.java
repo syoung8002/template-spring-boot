@@ -26,10 +26,14 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
 
 
     {{#aggregateRoot.fieldDescriptors}}
-    {{^isVO}}{{#isKey}}
+    {{^isVO}}
+    {{#isKey}}
     @Id
-    //@GeneratedValue(strategy=GenerationType.AUTO)
-    {{/isKey}}{{/isVO}}
+    {{#eq className "Long"}}
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    {{/eq}}
+    {{/isKey}}
+    {{/isVO}}
     {{#isLob}}@Lob{{/isLob}}
     {{#if (isPrimitive className)}}{{#isList}}{{/isList}}{{/if}}
     {{#checkRelations ../aggregateRoot.entities.relations className isVO referenceClass}}{{/checkRelations}}
@@ -175,6 +179,9 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
 //>>> DDD / Aggregate Root
 
 <function>
+window.$Handlebars.registerHelper('eq', function(arg1, arg2, options) {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
 window.$HandleBars.registerHelper('checkDateType', function (fieldDescriptors) {
     for(var i = 0; i < fieldDescriptors.length; i ++ ){
         if(fieldDescriptors[i] && fieldDescriptors[i].className == 'Date'){
