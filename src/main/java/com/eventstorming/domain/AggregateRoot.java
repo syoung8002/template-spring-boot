@@ -28,7 +28,7 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
     {{#aggregateRoot.fieldDescriptors}}
     {{^isVO}}{{#isKey}}
     @Id
-    {{#checkClassType}}{{/checkClassType}}
+    {{#checkClassType ../aggregateRoot.fieldDescriptors}}{{/checkClassType}}
     {{/isKey}}{{/isVO}}
     {{#isLob}}@Lob{{/isLob}}
     {{#if (isPrimitive className)}}{{#isList}}{{/isList}}{{/if}}
@@ -181,7 +181,7 @@ window.$HandleBars.registerHelper('checkClassType', function (fieldDescriptors) 
             return "@GeneratedValue(strategy=GenerationType.AUTO)";
         }
     }
-    return "";
+    return fieldDescriptors[0]+"";
 });
 
 window.$HandleBars.registerHelper('checkDateType', function (fieldDescriptors) {
