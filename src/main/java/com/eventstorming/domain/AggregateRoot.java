@@ -28,9 +28,9 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
     {{#aggregateRoot.fieldDescriptors}}
     {{^isVO}}{{#isKey}}
     @Id
-    {{#if_eq className "Long"}}
+    {{#checkClassType fieldDescriptors}}
     @GeneratedValue(strategy=GenerationType.AUTO)
-    {{/if_eq}}
+    {{/checkClassType}}
     {{/isKey}}{{/isVO}}
     {{#isLob}}@Lob{{/isLob}}
     {{#if (isPrimitive className)}}{{#isList}}{{/isList}}{{/if}}
@@ -177,16 +177,13 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
 //>>> DDD / Aggregate Root
 
 <function>
-window.$Handlebars.registerHelper('if_eq', function(a, b, opts) {
-    if(a == b) {
-        return opts.fn(this);
-        console.log("if_eq_a: " + a)
-        console.log("if_eq_b: " + b)
-    } else {
-        return opts.inverse(this);
-        console.log("if_eq_a: " + a)
-        console.log("if_eq_b: " + b)
+window.$HandleBars.registerHelper('checkClassType', function (fieldDescriptors) {
+    for(var i = 0; i < fieldDescriptors.length; i ++ ){
+        if(fieldDescriptors[i] && fieldDescriptors[i].className == 'Long'){
+            return true;
+        }
     }
+    return false;
 });
 
 window.$HandleBars.registerHelper('checkDateType', function (fieldDescriptors) {
