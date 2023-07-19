@@ -180,12 +180,12 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
 window.$Handlebars.registerHelper('if_eq', function(a, b, opts) {
     if(a == b) {
         return opts.fn(this);
-        console.log(a)
-        console.log(b)
+        console.log("if_eq_a: " + a)
+        console.log("if_eq_b: " + b)
     } else {
         return opts.inverse(this);
-        console.log(a)
-        console.log(b)
+        console.log("if_eq_a: " + a)
+        console.log("if_eq_b: " + b)
     }
 });
 
