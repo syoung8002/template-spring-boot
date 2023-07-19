@@ -181,7 +181,7 @@ window.$HandleBars.registerHelper('checkClassType', function (fieldDescriptors) 
             return "@GeneratedValue(strategy=GenerationType.AUTO)";
         }
     }
-    return fieldDescriptors[0]+"";
+    return "";
 });
 
 window.$HandleBars.registerHelper('checkDateType', function (fieldDescriptors) {
