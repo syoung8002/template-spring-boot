@@ -28,9 +28,7 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
     {{#aggregateRoot.fieldDescriptors}}
     {{^isVO}}{{#isKey}}
     @Id
-    {{#checkClassType fieldDescriptors}}
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    {{/checkClassType}}
+    {{#checkClassType}}{{/checkClassType}}
     {{/isKey}}{{/isVO}}
     {{#isLob}}@Lob{{/isLob}}
     {{#if (isPrimitive className)}}{{#isList}}{{/isList}}{{/if}}
@@ -180,10 +178,10 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
 window.$HandleBars.registerHelper('checkClassType', function (fieldDescriptors) {
     for(var i = 0; i < fieldDescriptors.length; i ++ ){
         if(fieldDescriptors[i] && fieldDescriptors[i].className == 'Long'){
-            return true;
+            return "@GeneratedValue(strategy=GenerationType.AUTO)";
         }
     }
-    return false;
+    return "";
 });
 
 window.$HandleBars.registerHelper('checkDateType', function (fieldDescriptors) {
