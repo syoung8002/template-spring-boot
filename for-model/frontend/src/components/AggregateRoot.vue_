@@ -3,7 +3,7 @@ fileName: {{boundedContext.namePascalCase}}{{namePascalCase}}.vue
 path: frontend/src/components
 ---
 <template>
-    <v-card style="width:450px;" outlined>
+    <v-card style="width:450px; height:100%;" outlined>
         <template slot="progress">
             <v-progress-linear
                     color="primary-darker-1"
@@ -13,7 +13,7 @@ path: frontend/src/components
         </template>
 
         <v-card-title v-if="value._links">
-            {{#ifNotNull displayName namePascalCase}}{{/ifNotNull}} # \{{value._links.self.href.split("/")[value._links.self.href.split("/").length - 1]}}
+            {{#ifNotNull displayName namePascalCase}}{{/ifNotNull}} # \{{decode(value._links.self.href.split("/")[value._links.self.href.split("/").length - 1])}}
         </v-card-title >
         <v-card-title v-else>
             {{#ifNotNull displayName namePascalCase}}{{/ifNotNull}}
@@ -23,7 +23,11 @@ path: frontend/src/components
         {{#aggregateRoot.fieldDescriptors}}
         {{#if (isNotId nameCamelCase)}}
         {{#if (isPrimitive className)}}
+            {{#if isKey}}
+            <{{getPrimitiveType className}} v-if="editMode" label="{{displayName}}" v-model="value.{{nameCamelCase}}" :editMode="editMode" :inputUI="'{{inputUI}}'"/>
+            {{else}}
             <{{getPrimitiveType className}} label="{{displayName}}" v-model="value.{{nameCamelCase}}" :editMode="editMode" :inputUI="'{{inputUI}}'"/>
+            {{/if}}
         {{else}}
             {{#checkVO className}}
             <{{className}} offline label="{{displayName}}" v-model="value.{{nameCamelCase}}" :editMode="editMode" @change="change"/>
@@ -219,6 +223,9 @@ path: frontend/src/components
             {{/if}}
         },
         methods: {
+            decode(value) {
+                return decodeURIComponent(value);
+            },
             selectFile(){
                 if(this.editMode == false) {
                     return false;

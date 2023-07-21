@@ -8,6 +8,7 @@ path: frontend/src/components/vo
         </v-card-title>
 
         <v-img
+            :key="photoRender"
             style="width:400px; height:300px; border-radius:10px; position:relative; margin-left:5px; top:5px;"
             :style="editMode ? 'cursor:pointer;':''"
             :src="value.imgFile ? value.imgFile:'https://cdn.vuetifyjs.com/images/cards/cooking.png'"
@@ -32,6 +33,9 @@ path: frontend/src/components/vo
             value : Object,
             label : String, 
         },
+        data: () => ({
+            photoRender:0
+        }),
         created(){
             if(!this.value) {
                 this.value = {
@@ -65,7 +69,7 @@ path: frontend/src/components/vo
                     reader.onload = function () {
                         var result = reader.result;
                         me.value.imgFile = result;
-                        
+                        me.photoRender++;
                     };
                     reader.readAsDataURL( file );
                 };
