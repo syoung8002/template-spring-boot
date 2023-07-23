@@ -2,6 +2,8 @@ forEach: View
 fileName: {{namePascalCase}}Repository.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/infra
 mergeType: template
+except: {{isNotQueryForAggregate}}
+
 ---
 package {{options.package}}.infra;
 
@@ -19,6 +21,12 @@ public interface {{namePascalCase}}Repository extends PagingAndSortingRepository
 }
 
 <function>
+
+var me = this;
+this.boundedContext.aggregates.forEach(agg => {if(agg.name==me.name) me.aggregate = agg});
+
+this.contexts.isNotQueryForAggregate = (this.dataProjection != "query-for-aggregate")
+
 window.$HandleBars.registerHelper('setFindBy', function (updateRules, name) {
     var text = "";
     try {
