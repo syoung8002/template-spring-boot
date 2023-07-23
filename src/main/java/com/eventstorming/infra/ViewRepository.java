@@ -2,7 +2,7 @@ forEach: View
 fileName: {{namePascalCase}}Repository.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/infra
 mergeType: template
-except: {{isNotCQRS}}
+except: {{contexts.isNotCQRS}}
 
 ---
 package {{options.package}}.infra;
