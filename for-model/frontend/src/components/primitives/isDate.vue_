@@ -44,34 +44,28 @@ path: frontend/src/components/primitives
     </div>
 </template>
 
-<script>  
+<script>
     export default {
         name: 'Date',
-        components:{
-        },
         props: {
-            value: Object,
+            value: String,
             editMode: Boolean,
-            label: String
         },
         data: () => ({
             menu: false,
-            date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+            date: null,
         }),
         created() {
-            if(!this.value) {
-                this.value = this.date;
+            if (!this.value) {
+                this.date = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10);
+            } else {
+                this.date = this.value;
             }
         },
         watch: {
-            value() {
-                this.change();
-            }
+            date(newValue) {
+                this.$emit('input', newValue);
+            },
         },
-        methods:{
-            change(){
-                this.$emit("input", this.value);
-            }
-        }
-    }
+    };
 </script>
