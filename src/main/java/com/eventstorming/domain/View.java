@@ -2,6 +2,7 @@ forEach: View
 representativeFor: View
 fileName: {{namePascalCase}}.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/domain
+except: {{contexts.isNotCQRS}}
 ---
 package {{options.package}}.domain;
 
@@ -29,6 +30,8 @@ public class {{namePascalCase}} {
 }
 
 <function>
+this.contexts.isNotCQRS = this.dataProjection!="cqrs"
+    
 window.$HandleBars.registerHelper('checkBigDecimal', function (fieldDescriptors) {
     for(var i = 0; i < fieldDescriptors.length; i ++ ){
         if(fieldDescriptors[i] && fieldDescriptors[i].className.includes('BigDecimal')){
