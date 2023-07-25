@@ -3,6 +3,7 @@ representativeFor: View
 fileName: {{namePascalCase}}ViewHandler.java
 path: {{boundedContext.name}}/{{{options.packagePath}}}/infra
 mergeType: template
+except: {{contexts.isNotCQRS}}
 ---
 package {{options.package}}.infra;
 
@@ -124,6 +125,8 @@ public class {{namePascalCase}}ViewHandler {
 
 
 <function>
+    this.contexts.isNotCQRS = this.dataProjection!="cqrs"//(this.dataProjection == "QUERY-FOR-AGGREGATE")
+
 window.$HandleBars.registerHelper('isOperator', function (value) {
         return value == '=';
         });

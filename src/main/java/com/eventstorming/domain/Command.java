@@ -20,7 +20,7 @@ public class {{namePascalCase}}Command {
         @Id
         //@GeneratedValue(strategy=GenerationType.AUTO)
     {{/isKey}}
-        private {{className}} {{nameCamelCase}};
+        private {{{className}}} {{nameCamelCase}};
 {{/fieldDescriptors}}
 
 
