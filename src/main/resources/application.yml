@@ -1,7 +1,7 @@
 server:
   port: 8080
 {{#circuitBreaker}}
-//<<< Resilency / Circuit Breaker
+##--< Resilency / Circuit Breaker
 feign:
   hystrix:
     enabled: true
@@ -9,7 +9,7 @@ hystrix:
   command:
     default:
       execution.isolation.thread.timeoutInMilliseconds: 500
-//>>> Resilency / Circuit Breaker
+##--> Resilency / Circuit Breaker
 {{/circuitBreaker}}
 spring:
   application:
