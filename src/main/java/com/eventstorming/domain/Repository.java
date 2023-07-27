@@ -11,9 +11,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 //<<< PoEAA / Repository
 @RepositoryRestResource(collectionResourceRel="{{namePlural}}", path="{{namePlural}}")
 public interface {{namePascalCase}}Repository extends PagingAndSortingRepository<{{namePascalCase}}, {{aggregateRoot.keyFieldDescriptor.className}}>{
-	{{#aggregateRoot.readModels}}
-		findBy{{camelCase name}}(Sort sort);
-	{{/aggregateRoot.readModels}}
+
 }
 //>>> PoEAA / Repository
 <function>
