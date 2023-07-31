@@ -184,7 +184,7 @@ export default {
 
       {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
       var me = this
-      me.username = localStorage.getItem('preferred_username')
+      me.username = me.$OAuth.idTokenParsed.preferred_username
 
       if(!me.username){
           location.reload()
