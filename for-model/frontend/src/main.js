@@ -85,7 +85,7 @@ init();
 function init() {
   keycloak.init({
     onLoad: initOptions.onLoad,
-  }).success(auth => {
+  }).then(auth => {
     const ONE_MINUTE = 60000;
   
     if (!auth) {
@@ -134,13 +134,13 @@ function init() {
     }
   
     window.setTimeout(refreshToken.bind(null, keycloak), ONE_MINUTE);
-  }).error(() => {
+  }).catch(() => {
     console.error(`Auth Fail`);
   })
 }
 
 function refreshToken() {
-  keycloak.updateToken(70).success(refreshed => {
+  keycloak.updateToken(70).then(refreshed => {
     if (refreshed) {
       successRefresh(refreshed);
     } else {
