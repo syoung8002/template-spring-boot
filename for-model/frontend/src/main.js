@@ -78,7 +78,7 @@ let initOptions = {
   onLoad: `login-required`,
 };
 
-let keycloak = Keycloak(initOptions);
+let keycloak = new Keycloak(initOptions);
 
 init();
 
@@ -93,13 +93,15 @@ function init() {
     } else {
       console.info(`Auth ok`);
     }
+
+    Vue.prototype.$OAuth = keycloak
   
     new Vue({
       vuetify,
       router,
       render: h => h(App, {
         props: {
-          keycloakVal: keycloak,
+          OAuth: keycloak,
         },
       }),
     }).$mount("#app");
