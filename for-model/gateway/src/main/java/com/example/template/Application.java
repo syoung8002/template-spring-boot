@@ -43,8 +43,6 @@ window.$HandleBars.registerHelper('isSelectedSecurity', function (toppingPlatfor
         for(var i=0; i<toppingPlatforms.length; i++){
             if(toppingPlatforms[i] == "keycloak-security" || toppingPlatforms[i] == "spring-security"){
                 selectedSecurity =  true;
-            }else {
-                selectedSecurity = false;
             }
         }
 
