@@ -105,35 +105,6 @@ function init() {
         },
       }),
     }).$mount("#app");
-
-    localStorage.setItem(`vue-token`, keycloak.token);
-    localStorage.setItem(`vue-refresh-token`, keycloak.refreshToken);
-    localStorage.setItem(`vue-idToken`, keycloak.idToken);
-    localStorage.setItem(`vue-idTokenParsed`, keycloak.idTokenParsed);
-
-    console.log(keycloak.subject);
-    if (keycloak.idToken) {
-        //document.location.href = "?user="+keycloak.idTokenParsed.preferred_username;
-        console.log('IDToken');
-        localStorage.setItem('preferred_username', keycloak.idTokenParsed.preferred_username);
-        localStorage.setItem('email', keycloak.idTokenParsed.email);
-        localStorage.setItem('name', keycloak.idTokenParsed.name);
-        localStorage.setItem('given_name', keycloak.idTokenParsed.given_name);
-        localStorage.setItem('family_name', keycloak.idTokenParsed.family_name);
-        localStorage.setItem('user_roles', keycloak.tokenParsed.realm_access.roles);
-        localStorage.setItem('user_client_roles', Object.values(keycloak.tokenParsed.resource_access)[1].roles);
-    } else {
-        keycloak.loadUserProfile(function() {
-            console.log('Account Service');
-            localStorage.setItem('username', keycloak.profile.username);
-            localStorage.setItem('email', keycloak.profile.email);
-            localStorage.setItem('name', keycloak.profile.firstName + ' ' + keycloak.profile.lastName);
-            localStorage.setItem('firstName', keycloak.profile.firstName);
-            localStorage.setItem('lastName', keycloak.profile.lastName);
-        }, function() {
-            console.log('Failed to retrieve user details. Please enable claims or account role');
-        });
-    }
   
     window.setTimeout(refreshToken.bind(null, keycloak), ONE_MINUTE);
   }).catch(() => {
