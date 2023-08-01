@@ -205,7 +205,8 @@ path: frontend/src/components
             snackbar: {
                 status: false,
                 timeout: 5000,
-                text: ''
+                text: '',
+                userRole: ''
             },
         {{#commands}}
         {{^isRestRepository}}
@@ -215,11 +216,11 @@ path: frontend/src/components
         {{/isRestRepository}}
         {{/commands}}
         }),
-        computed:{
+	async created() {
             {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
-            userRoles() {
-                return this.$OAuth.tokenParsed.realm_access.roles;
-            } 
+            var me = this
+
+            me.userRole = me.$OAuth.tokenParsed.realm_access.roles;
             {{/if}}
         },
         methods: {
