@@ -15,11 +15,6 @@ export default {
         SNSApp
     },
     name: "App",
-    {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
-    props:{
-        keycloakVal: Object
-    },
-    {{/if}}
     data: () => ({
         useComponent: "",
         drawer: true,
