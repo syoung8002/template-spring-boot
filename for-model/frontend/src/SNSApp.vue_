@@ -145,11 +145,6 @@ fileName: SNSApp.vue
 
 export default {
     name: "App",
-    {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
-    props:{
-        keycloakVal: Object
-    },
-    {{/if}}
     data: () => ({
         useComponent: "",
         drawer: true,
