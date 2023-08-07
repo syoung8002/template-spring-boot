@@ -179,7 +179,7 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
 
 <function>
 window.$HandleBars.registerHelper('checkLocalDate', function(fieldDescriptors){
-    for(var i = 0; i<type.length; i++){
+    for(var i = 0; i<fieldDescriptors.length; i++){
         if(fieldDescriptors[i] && fieldDescriptors[i].className = "LocalDate"){
             return "import java.time.LocalDate;"
         }
