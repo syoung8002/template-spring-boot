@@ -27,16 +27,18 @@ path: frontend/src/components
         data: () => ({
             options: {
                 chart: {
-                    id: 'vuechart-example'
+                    id: ""
                 },
                 xaxis: {
-                    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+                    categories: []
                 }
             },
-            series: [{
-                name: 'series-1',
-                data: [30, 40, 45, 50, 49, 60, 70, 91]
-            }],
+            series: [
+                {
+                    name: "",
+                    data: []
+                }
+            ],
         }),
         async created() {
         },
@@ -47,8 +49,8 @@ path: frontend/src/components
 
 
 <function>
-    // let ui = this.attachedLists.find((ele) => ele.type.includes("UI"));
-    // options.ui = ui;
+    let ui = this.attachedLists.find((ele) => ele.type.includes("UI"));
+    options.ui = ui;
 
     window.$HandleBars.registerHelper('toURL', function (className) {
 
