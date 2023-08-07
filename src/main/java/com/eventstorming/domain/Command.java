@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Date;
 import lombok.Data;
+import java.time.LocalDate;
 {{#checkBigDecimal fieldDescriptors}}{{/checkBigDecimal}}
 
 @Data
@@ -38,4 +39,5 @@ window.$HandleBars.registerHelper('checkBigDecimal', function (fieldDescriptors)
         }
     }
 });
+
 </function>
