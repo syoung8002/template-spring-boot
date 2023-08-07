@@ -14,8 +14,7 @@ public interface {{namePascalCase}}Repository extends PagingAndSortingRepository
     @Query(value = "select {{nameCamelCase}} " +
         "from {{namePascalCase}} {{nameCamelCase}} " +
         "where{{#contexts.views}}{{#queryParameters}}(:{{name}} is null or {{../nameCamelCase}}.{{name}} like %:%{{name}}){{^@last}} and {{/@last}}{{/queryParameters}}{{/contexts.views}}")
-       List<{{namePascalCase}}> {{#contexts.views}}{{#queryOption}}{{apiPath}}{{/queryOption}}Query
-       
+       List<{{namePascalCase}}> {{#contexts.views}}{{#queryOption}}{{apiPath}}{{/queryOption}}Query       
 ({{#queryParameters}}{{className}} {{nameCamelCase}}{{^@last}}, {{/@last}}{{/queryParameters}}, Pageable pageable);
 {{/contexts.views}}
 }
