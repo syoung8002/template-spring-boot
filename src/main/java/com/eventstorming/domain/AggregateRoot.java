@@ -5,6 +5,7 @@ path: {{boundedContext.name}}/{{{options.packagePath}}}/domain
 ---
 package {{options.package}}.domain;
 
+{{#checkLocalDate aggregateRoot.fieldDescriptors}}{{/checkLocalDate}}
 {{#lifeCycles}}
 {{#events}}
 import {{../../options.package}}.domain.{{namePascalCase}};
@@ -16,7 +17,6 @@ import java.util.List;
 import lombok.Data;
 import java.util.Date;
 {{#checkBigDecimal aggregateRoot.fieldDescriptors}}{{/checkBigDecimal}}
-{{#checkLocalDate aggregateRoot.fieldDescriptors}}{{/checkLocalDate}}
 
 @Entity
 @Table(name="{{namePascalCase}}_table")
@@ -178,9 +178,9 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
 //>>> DDD / Aggregate Root
 
 <function>
-window.$HandleBars.registerHelper('checkLocalDate', function(type){
+window.$HandleBars.registerHelper('checkLocalDate', function(fieldDescriptors){
     for(var i = 0; i<type.length; i++){
-        if(type[i].className = "LocalDate"){
+        if(fieldDescriptors[i] && fieldDescriptors[i].className = "LocalDate"){
             return "import java.time.LocalDate;"
         }
     }
