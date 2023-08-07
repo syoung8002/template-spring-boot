@@ -11,16 +11,18 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 //<<< PoEAA / Repository
 @RepositoryRestResource(collectionResourceRel="{{namePlural}}", path="{{namePlural}}")
 public interface {{namePascalCase}}Repository extends PagingAndSortingRepository<{{namePascalCase}}, {{aggregateRoot.keyFieldDescriptor.className}}>{
+{{#if boundedContext.readModels}}    
     @Query(value = "select {{nameCamelCase}} " +
         "from {{namePascalCase}} {{nameCamelCase}} " +
-        "where{{#contexts.views}}{{#queryParameters}}(:{{name}} is null or {{../nameCamelCase}}.{{name}} like %:%{{name}}){{^@last}} and {{/@last}}{{/queryParameters}}{{/contexts.views}}")
-       List<{{namePascalCase}}> {{#contexts.views}}{{#queryOption}}{{apiPath}}{{/queryOption}}Query       
+        "where{{#boundedContext.readModels}}{{#queryParameters}}(:{{name}} is null or {{../nameCamelCase}}.{{name}} like %:%{{name}}){{^@last}} and {{/@last}}{{/queryParameters}}{{/boundedContext.readModels}}")
+       List<{{namePascalCase}}> {{#boundedContext.readModels}}{{#queryOption}}{{apiPath}}{{/queryOption}}Query       
 ({{#queryParameters}}{{className}} {{nameCamelCase}}{{^@last}}, {{/@last}}{{/queryParameters}}, Pageable pageable);
-{{/contexts.views}}
+{{/boundedContext.readModels}}
+{{/if}}  
 }
 <function>
  var me = this;
-  me.contexts.views = [];
+ me.contexts.views = []
   if(this.boundedContext.readModels)
   this.boundedContext.readModels.forEach(view=>{
       if(view.aggregate == me && view.dataProjection=="query-for-aggregate"){
