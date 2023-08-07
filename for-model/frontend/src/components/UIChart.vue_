@@ -49,7 +49,7 @@ path: frontend/src/components
 
 
 <function>
-    let ui = this.attached.find((ele) => ele.type.includes("UI"));
+    let ui = this.attached.find((ele) => ele._type.includes("UI"));
     options.ui = ui;
 
     window.$HandleBars.registerHelper('toURL', function (className) {
