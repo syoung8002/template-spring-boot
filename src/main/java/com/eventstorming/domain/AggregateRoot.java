@@ -33,7 +33,6 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
     {{#isLob}}@Lob{{/isLob}}
     {{#if (isPrimitive className)}}{{#isList}}{{/isList}}{{/if}}
     {{#checkRelations ../aggregateRoot.entities.relations className isVO referenceClass}}{{/checkRelations}}
-    {{#checkAttribute ../aggregateRoot.entities.relations ../name className isVO}}{{/checkAttribute}}
     private {{{className}}} {{nameCamelCase}};
     {{/aggregateRoot.fieldDescriptors}}
 
@@ -112,6 +111,9 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
         
         {{#triggerByCommand}}
         {{eventValue.namePascalCase}} {{eventValue.nameCamelCase}} = new {{eventValue.namePascalCase}}(this);
+        {{#correlationGetSet .. eventValue}} 
+        {{../eventValue.nameCamelCase}}.set{{target.namePascalCase}}({{../../nameCamelCase}}Command.get{{source.namePascalCase}}());
+        {{/correlationGetSet}}
         {{eventValue.nameCamelCase}}.publishAfterCommit();
 
         {{#relationCommandInfo}}
@@ -200,59 +202,59 @@ window.$HandleBars.registerHelper('checkBigDecimal', function (fieldDescriptors)
     }
 });
 
-window.$HandleBars.registerHelper('checkAttribute', function (relations, source, target, isVO) {
-   try {
-       if(typeof relations === "undefined"){
-        return;
-        }
+// window.$HandleBars.registerHelper('checkAttribute', function (relations, source, target, isVO) {
+//    try {
+//        if(typeof relations === "undefined"){
+//         return;
+//         }
 
-        if(!isVO){
-            return;
-        }
+//         if(!isVO){
+//             return;
+//         }
 
-        var sourceObj = [];
-        var targetObj = [];
-        var sourceTmp = {};
-        var targetName = null;
-        for(var i = 0 ; i<relations.length; i++){
-            if(relations[i] != null){
-                if(relations[i].sourceElement.name == source){
-                    sourceTmp = relations[i].sourceElement;
-                    sourceObj = relations[i].sourceElement.fieldDescriptors;
-                }
-                if(relations[i].targetElement.name == target){
-                    targetObj = relations[i].targetElement.fieldDescriptors;
-                    targetName = relations[i].targetElement.nameCamelCase;
-                }
-            }
-        }
+//         var sourceObj = [];
+//         var targetObj = [];
+//         var sourceTmp = {};
+//         var targetName = null;
+//         for(var i = 0 ; i<relations.length; i++){
+//             if(relations[i] != null){
+//                 if(relations[i].sourceElement.name == source){
+//                     sourceTmp = relations[i].sourceElement;
+//                     sourceObj = relations[i].sourceElement.fieldDescriptors;
+//                 }
+//                 if(relations[i].targetElement.name == target){
+//                     targetObj = relations[i].targetElement.fieldDescriptors;
+//                     targetName = relations[i].targetElement.nameCamelCase;
+//                 }
+//             }
+//         }
 
-        var samePascal = [];
-        var sameCamel = [];
-        for(var i = 0; i<sourceObj.length; i++){
-            for(var j =0; j<targetObj.length; j++){
-                if(sourceObj[i].name == targetObj[j].name){
-                    samePascal.push(sourceObj[i].namePascalCase);
-                    sameCamel.push(sourceObj[i].nameCamelCase);
-                }
-            }
-        }
+//         var samePascal = [];
+//         var sameCamel = [];
+//         for(var i = 0; i<sourceObj.length; i++){
+//             for(var j =0; j<targetObj.length; j++){
+//                 if(sourceObj[i].name == targetObj[j].name){
+//                     samePascal.push(sourceObj[i].namePascalCase);
+//                     sameCamel.push(sourceObj[i].nameCamelCase);
+//                 }
+//             }
+//         }
 
-        var attributeOverrides = "";
-        for(var i =0; i<samePascal.length; i++){
-            var camel = sameCamel[i];
-            var pascal = samePascal[i];
-            var overrides = `@AttributeOverride(name="${camel}", column= @Column(name="${targetName}${pascal}", nullable=true))\n`;
-            attributeOverrides += overrides;
-        }
+//         var attributeOverrides = "";
+//         for(var i =0; i<samePascal.length; i++){
+//             var camel = sameCamel[i];
+//             var pascal = samePascal[i];
+//             var overrides = `@AttributeOverride(name="${camel}", column= @Column(name="${targetName}${pascal}", nullable=true))\n`;
+//             attributeOverrides += overrides;
+//         }
 
-        return attributeOverrides;
-    } catch (e) {
-       console.log(e)
-    }
+//         return attributeOverrides;
+//     } catch (e) {
+//        console.log(e)
+//     }
 
 
-});
+// });
 
 window.$HandleBars.registerHelper('isPrimitive', function (className) {
     if(className.includes("String") || className.includes("Integer") || className.includes("Long") || className.includes("Double") || className.includes("Float")
@@ -405,6 +407,22 @@ window.$HandleBars.registerHelper('setOperations', function (commands, name, opt
     } catch(e) {
         console.log(e)
     }
+});
+
+window.$HandleBars.registerHelper('correlationGetSet', function (setter, getter,options) {
+    let obj = {
+        source: null,
+        target: null
+    };
+   
+    if(setter && setter.fieldDescriptors){
+        obj.source = setter.fieldDescriptors.find(x=> x.isCorrelationKey);
+    }
+    if(getter && getter.fieldDescriptors){
+        obj.target = getter.fieldDescriptors.find(x => x.isCorrelationKey);
+    }
+    
+    return options.fn(obj);
 });
 
 

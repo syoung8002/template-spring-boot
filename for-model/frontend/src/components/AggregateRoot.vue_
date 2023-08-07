@@ -205,7 +205,10 @@ path: frontend/src/components
             snackbar: {
                 status: false,
                 timeout: 5000,
-                text: ''
+                text: '',
+		{{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
+                userRole: ''
+		{{/if}}
             },
         {{#commands}}
         {{^isRestRepository}}
@@ -215,11 +218,11 @@ path: frontend/src/components
         {{/isRestRepository}}
         {{/commands}}
         }),
-        computed:{
+	async created() {
             {{#if (isSelectedSecurity options.rootModel.toppingPlatforms)}}
-            userRoles() {
-                return localStorage.getItem('user_client_roles');
-            } 
+            var me = this
+
+            me.userRole = me.$OAuth.tokenParsed.realm_access.roles;
             {{/if}}
         },
         methods: {
@@ -557,8 +560,6 @@ path: frontend/src/components
             for(var i=0; i<toppingPlatforms.length; i++){
                 if(toppingPlatforms[i] == "keycloak-security" || toppingPlatforms[i] == "spring-security"){
                     selectedSecurity = true;
-                }else {
-                    selectedSecurity = false;
                 }
             }
 
