@@ -1,5 +1,5 @@
 forEach: View
-fileName: {{options.ui.namePascalCase}}Chart.vue
+fileName: {{namePascalCase}}Chart.vue
 path: frontend/src/components
 ---
 <template>
