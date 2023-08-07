@@ -16,6 +16,7 @@ import java.util.List;
 import lombok.Data;
 import java.util.Date;
 {{#checkBigDecimal aggregateRoot.fieldDescriptors}}{{/checkBigDecimal}}
+{{#checkLocalDate aggregateRoot.fieldDescriptors}}{{/checkLocalDate}}
 
 @Entity
 @Table(name="{{namePascalCase}}_table")
@@ -177,6 +178,14 @@ public class {{namePascalCase}} {{#checkExtends aggregateRoot.entities.relations
 //>>> DDD / Aggregate Root
 
 <function>
+window.$HandleBars.registerHelper('checkLocalDate', function(type){
+    for(var i = 0; i<type.length; i++){
+        if(type[i].className = "LocalDate"){
+            return "import java.time.LocalDate;"
+        }
+    }
+})
+
 window.$HandleBars.registerHelper('checkClassType', function (fieldDescriptors) {
     for(var i = 0; i < fieldDescriptors.length; i ++ ){
         if(fieldDescriptors[i] && fieldDescriptors[i].className == 'Long'){

@@ -11,10 +11,23 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 //<<< PoEAA / Repository
 @RepositoryRestResource(collectionResourceRel="{{namePlural}}", path="{{namePlural}}")
 public interface {{namePascalCase}}Repository extends PagingAndSortingRepository<{{namePascalCase}}, {{aggregateRoot.keyFieldDescriptor.className}}>{
-
+    @Query(value = "select {{nameCamelCase}} " +
+        "from {{namePascalCase}} {{nameCamelCase}} " +
+        "where{{#contexts.views}}{{#queryParameters}}(:{{name}} is null or {{../nameCamelCase}}.{{name}} like %:%{{name}}){{^@last}} and {{/@last}}{{/queryParameters}}{{/contexts.views}}")
+       List<{{namePascalCase}}> {{#contexts.views}}{{#queryOption}}{{apiPath}}{{/queryOption}}Query
+       
+({{#queryParameters}}{{className}} {{nameCamelCase}}{{^@last}}, {{/@last}}{{/queryParameters}}, Pageable pageable);
+{{/contexts.views}}
 }
-//>>> PoEAA / Repository
 <function>
+ var me = this;
+  me.contexts.views = [];
+  if(this.boundedContext.readModels)
+  this.boundedContext.readModels.forEach(view=>{
+      if(view.aggregate == me && view.dataProjection=="query-for-aggregate"){
+          me.contexts.views.push(view);
+      }
+  })
   window.$HandleBars.registerHelper('isNotId', function (className) {
     return (className != 'id')
   })
