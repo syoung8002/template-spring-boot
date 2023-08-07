@@ -25,10 +25,10 @@ path: frontend/src/components
             value: Object
         },
         data: () => ({
-            type: {{options.ui.chart.type}},
+            type: "{{options.ui.chart.type}}",
             options: {
                 chart: {
-                    id: "{{nameCamelCase}}-{{options.ui.name}}"
+                    id: "{{nameCamelCase}}-{{options.ui.nameCamelCase}}"
                 },
                 xaxis: {
                     categories: []
