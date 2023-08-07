@@ -6,7 +6,7 @@ path: frontend/src/components
     <div>
         <apexchart 
                 width="500" 
-                type="bar" 
+                :type="type" 
                 :options="options" 
                 :series="series"
         ></apexchart>
@@ -25,9 +25,10 @@ path: frontend/src/components
             value: Object
         },
         data: () => ({
+            type: {{options.ui.chart.type}},
             options: {
                 chart: {
-                    id: ""
+                    id: "{{nameCamelCase}}-{{options.ui.name}}"
                 },
                 xaxis: {
                     categories: []
@@ -35,7 +36,6 @@ path: frontend/src/components
             },
             series: [
                 {
-                    name: "",
                     data: []
                 }
             ],
