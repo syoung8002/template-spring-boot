@@ -15,6 +15,7 @@ path: frontend/src/components
 
 <script>
     import VueApexCharts from 'vue-apexcharts';
+    const axios = require('axios').default;
 
     export default {
         name: '{{namePascalCase}}Chart',
@@ -25,6 +26,7 @@ path: frontend/src/components
             value: Object
         },
         data: () => ({
+            {{nameCamelCase}} : [],
             type: "{{options.ui.chart.type}}",
             options: {
                 chart: {
@@ -41,11 +43,32 @@ path: frontend/src/components
             ],
         }),
         async created() {
+            var temp = await axios.get(axios.fixUrl('/{{namePlural}}'));
+
+            temp.data._embedded.{{namePlural}}.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1]);
+
+            this.{{nameCamelCase}} = temp.data._embedded.{{namePlural}};
+
+            cosnt category = "{{options.ui.chart.fieldMapping.category}}";
+            cosnt data = "{{options.ui.chart.fieldMapping.data}}";
+
+            if(this.{{nameCamelCase}} && this.{{nameCamelCase}}.length > 0) {
+                this.{{nameCamelCase}}.forEach((item) => {
+                    if (item) {
+                        if (item.hasOwnProperty(category)) {
+                            this.options.xaxis.categories.push(item[category])
+                        }
+                        if (item.hasOwnProperty(data)) {
+                            this.series[0].data.push(item[data])
+                        }
+                    }
+                })
+            }
         },
         methods: {
         }
     }
-</script>
+</script>2
 
 
 <function>
