@@ -5,7 +5,7 @@ path: frontend/src/components
 <template>
     <div>
         <apexchart 
-                width="500" 
+                width="1000" 
                 :type="type" 
                 :options="options" 
                 :series="series"
@@ -38,6 +38,7 @@ path: frontend/src/components
             },
             series: [
                 {
+                    name: "{{options.ui.chart.fieldMapping.data}}",
                     data: []
                 }
             ],
@@ -48,7 +49,7 @@ path: frontend/src/components
             temp.data._embedded.{{namePlural}}.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1]);
 
             this.{{nameCamelCase}} = temp.data._embedded.{{namePlural}};
-
+            {{#options.ui}}
             const category = "{{options.ui.chart.fieldMapping.category}}";
             const data = "{{options.ui.chart.fieldMapping.data}}";
 
@@ -56,19 +57,20 @@ path: frontend/src/components
                 this.{{nameCamelCase}}.forEach((item) => {
                     if (item) {
                         if (item.hasOwnProperty(category)) {
-                            this.options.xaxis.categories.push(item[category])
+                            this.options.xaxis.categories.push(item[category]);
                         }
                         if (item.hasOwnProperty(data)) {
-                            this.series[0].data.push(item[data])
+                            this.series[0].data.push(item[data]);
                         }
                     }
-                })
+                });
             }
+            {{/options.ui}}
         },
         methods: {
         }
     }
-</script>2
+</script>
 
 
 <function>
