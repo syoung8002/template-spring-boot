@@ -50,17 +50,25 @@ path: frontend/src/components
 
             this.{{nameCamelCase}} = temp.data._embedded.{{namePlural}};
             {{#options.ui}}
-            const category = "{{options.ui.chart.fieldMapping.category}}";
+            const categories = "{{options.ui.chart.fieldMapping.category}}";
             const data = "{{options.ui.chart.fieldMapping.data}}";
 
             if(this.{{nameCamelCase}} && this.{{nameCamelCase}}.length > 0) {
                 this.{{nameCamelCase}}.forEach((item) => {
                     if (item) {
-                        if (item.hasOwnProperty(category)) {
-                            this.options.xaxis.categories.push(item[category]);
+                        if (categories && categories.length > 0) {
+                            categories.forEach((category) => {
+                                if (item[category]) {
+                                    this.options.xaxis.categories.push(item[category]);
+                                }
+                            })
                         }
-                        if (item.hasOwnProperty(data)) {
-                            this.series[0].data.push(item[data]);
+                        if (data && data.length > 0) {
+                            data.forEach((val) => {
+                                if (item[val]) {
+                                    this.series[0].data.push(item[data]);
+                                }
+                            })
                         }
                     }
                 });
