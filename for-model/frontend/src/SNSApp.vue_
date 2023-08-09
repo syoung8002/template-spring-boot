@@ -67,7 +67,7 @@ fileName: SNSApp.vue
                     <v-list-item
                             class="px-2"
                             key="{{namePlural}}"
-                            to="{{namePlural}}"
+                            to="/{{namePlural}}"
                             @click="changeUrl()"
                             color="primary"
                             style="font-weight:700;"

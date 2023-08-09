@@ -5,6 +5,7 @@ path: frontend/src/components
 <template>
     <div>
         <apexchart 
+                v-if="isView"
                 width="1000" 
                 :type="type" 
                 :options="options" 
@@ -43,6 +44,14 @@ path: frontend/src/components
                 }
             ],
         }),
+        computed: {
+            isView() {
+                if (this.options.xaxis.categories.length > 0 || this.series[0].data.length > 0) {
+                    return true;
+                }
+                return false;
+            },
+        },
         async created() {
             var temp = await axios.get(axios.fixUrl('/{{namePlural}}'));
 
