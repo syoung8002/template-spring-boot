@@ -50,8 +50,8 @@ path: frontend/src/components
 
             this.{{nameCamelCase}} = temp.data._embedded.{{namePlural}};
             {{#options.ui}}
-            const categories = {{chart.fieldMapping.category}};
-            const data = {{chart.fieldMapping.data}};
+            const categories = {{#setFieldMapping chart.fieldMapping.category}}{{/setFieldMapping}};
+            const data = {{#setFieldMapping chart.fieldMapping.data}}{{/setFieldMapping}};
 
             if(this.{{../nameCamelCase}} && this.{{../nameCamelCase}}.length > 0) {
                 this.{{../nameCamelCase}}.forEach((item) => {
