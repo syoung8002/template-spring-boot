@@ -51,12 +51,12 @@ fileName: SNSApp.vue
 		    {{#boundedContexts}}
     		    {{#aggregates}}
                     <v-list-item
-                        class="px-2"
-                        key="{{namePlural}}"
-                        to="/{{boundedContext.namePlural}}/{{namePlural}}"
-                        @click="changeUrl()"
-                        color="primary"
-                        style="font-weight:700;"
+                            class="px-2"
+                            key="{{namePlural}}"
+                            to="/{{boundedContext.namePlural}}/{{namePlural}}"
+                            @click="changeUrl()"
+                            color="primary"
+                            style="font-weight:700;"
                     >
                         {{#ifNotNull displayName namePascalCase}}{{/ifNotNull}}
                     </v-list-item>
@@ -65,12 +65,12 @@ fileName: SNSApp.vue
 
     		    {{#viewes}}
                     <v-list-item
-                        class="px-2"
-                        key="{{namePlural}}"
-                        to="{{namePlural}}"
-                        @click="changeUrl()"
-                        color="primary"
-                        style="font-weight:700;"
+                            class="px-2"
+                            key="{{namePlural}}"
+                            to="{{namePlural}}"
+                            @click="changeUrl()"
+                            color="primary"
+                            style="font-weight:700;"
                     >
                         {{namePascalCase}}
                     </v-list-item>

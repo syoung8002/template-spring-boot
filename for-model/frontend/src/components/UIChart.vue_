@@ -85,6 +85,20 @@ path: frontend/src/components
     let ui = this.attached.find((ele) => ele._type.includes("UI"));
     options.ui = ui;
 
+    window.$HandleBars.registerHelper('setFieldMapping', function (fields) {
+        let text = "[ ";
+        if (fields && fields.length > 0) {
+            fields.forEach((field, index) => {
+                text += `"${field}"`;
+                if (index < fields.length-1) {
+                    text += ", "
+                }
+            })
+        }
+        text += " ]";
+        return text;
+    })
+
     window.$HandleBars.registerHelper('toURL', function (className) {
 
         var pluralize = function(value, revert) {
