@@ -42,7 +42,7 @@ path: frontend/src/components
                 }
             ],
             {{#options.view}}
-            {{nameCamelCase}} : [],
+            {{nameCamelCase}}: [],
             {{/options.view}}
         }),
         computed: {
