@@ -5,11 +5,11 @@ path: frontend/src/components
 <template>
     <div>
         <apexchart 
-                v-if="isView"
-                width="1000" 
+                width="800" 
                 :type="type" 
-                :options="options" 
+                :options="options"
                 :series="series"
+                ref="{{chart.type}}Chart"
         ></apexchart>
     </div>
 </template>
@@ -32,9 +32,13 @@ path: frontend/src/components
                 chart: {
                     id: "{{nameCamelCase}}-{{chart.type}}"
                 },
+                {{#if (isPieChart chart.type)}}
+                labels: [],
+                {{else}}
                 xaxis: {
                     categories: []
-                }
+                },
+                {{/if}}
             },
             series: [
                 {
@@ -45,20 +49,41 @@ path: frontend/src/components
             {{nameCamelCase}}: [],
             {{/options.view}}
         }),
-        computed: {
-            isView() {
-                if (this.options.xaxis.categories.length > 0 || this.series[0].data.length > 0) {
-                    return true;
-                }
-                return false;
-            },
-        },
         async created() {
             {{#options.view}}
             var temp = await axios.get(axios.fixUrl('/{{namePlural}}'));
 
             temp.data._embedded.{{namePlural}}.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1]);
 
+            {{#if (isPieChart ../chart.type)}}
+            this.{{nameCamelCase}} = temp.data._embedded.{{namePlural}};
+            const labels = {{#setFieldMapping ../chart.fieldMapping.category}}{{/setFieldMapping}};
+            const data = {{#setFieldMapping ../chart.fieldMapping.data}}{{/setFieldMapping}};
+
+            this.options.labels = [];
+            this.series = [];
+
+            if(this.{{nameCamelCase}} && this.{{nameCamelCase}}.length > 0) {
+                this.{{nameCamelCase}}.forEach((item) => {
+                    if (item) {
+                        if (labels && labels.length > 0) {
+                            labels.forEach((label) => {
+                                if (item[label]) {
+                                    this.options.labels.push(item[label]);
+                                }
+                            })
+                        }
+                        if (data && data.length > 0) {
+                            data.forEach((val) => {
+                                if (item[val]) {
+                                    this.series.push(item[data]);
+                                }
+                            })
+                        }
+                    }
+                });
+            }
+            {{else}}
             this.{{nameCamelCase}} = temp.data._embedded.{{namePlural}};
             const categories = {{#setFieldMapping ../chart.fieldMapping.category}}{{/setFieldMapping}};
             const data = {{#setFieldMapping ../chart.fieldMapping.data}}{{/setFieldMapping}};
@@ -83,7 +108,10 @@ path: frontend/src/components
                     }
                 });
             }
+            {{/if}}
             {{/options.view}}
+
+            this.$refs.{{chart.type}}Chart.refresh();
         },
         methods: {
         }
@@ -94,6 +122,14 @@ path: frontend/src/components
 <function>
     let view = this.attached.find((ele) => ele._type.includes("View"));
     options.view = view;
+
+    window.$HandleBars.registerHelper('isPieChart', function (type) {
+        if (type.includes("pie") || type.includes("donut")) {
+            return true;
+        } else {
+            return false;
+        }
+    })
 
     window.$HandleBars.registerHelper('setFieldMapping', function (fields) {
         let text = "[ ";
