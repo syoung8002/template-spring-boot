@@ -1,4 +1,4 @@
-forEach: View
+forEach: UI
 fileName: {{namePascalCase}}Chart.vue
 path: frontend/src/components
 ---
@@ -27,11 +27,10 @@ path: frontend/src/components
             value: Object
         },
         data: () => ({
-            {{nameCamelCase}} : [],
-            type: "{{options.ui.chart.type}}",
+            type: "{{chart.type}}",
             options: {
                 chart: {
-                    id: "{{nameCamelCase}}-{{options.ui.nameCamelCase}}"
+                    id: "{{nameCamelCase}}-{{chart.type}}"
                 },
                 xaxis: {
                     categories: []
@@ -39,10 +38,12 @@ path: frontend/src/components
             },
             series: [
                 {
-                    name: "{{options.ui.chart.fieldMapping.data}}",
                     data: []
                 }
             ],
+            {{#options.view}}
+            {{nameCamelCase}} : [],
+            {{/options}}
         }),
         computed: {
             isView() {
@@ -53,17 +54,17 @@ path: frontend/src/components
             },
         },
         async created() {
+            {{#options.view}}
             var temp = await axios.get(axios.fixUrl('/{{namePlural}}'));
 
             temp.data._embedded.{{namePlural}}.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1]);
 
             this.{{nameCamelCase}} = temp.data._embedded.{{namePlural}};
-            {{#options.ui}}
-            const categories = {{#setFieldMapping chart.fieldMapping.category}}{{/setFieldMapping}};
-            const data = {{#setFieldMapping chart.fieldMapping.data}}{{/setFieldMapping}};
+            const categories = {{#setFieldMapping ../chart.fieldMapping.category}}{{/setFieldMapping}};
+            const data = {{#setFieldMapping ../chart.fieldMapping.data}}{{/setFieldMapping}};
 
-            if(this.{{../nameCamelCase}} && this.{{../nameCamelCase}}.length > 0) {
-                this.{{../nameCamelCase}}.forEach((item) => {
+            if(this.{{nameCamelCase}} && this.{{nameCamelCase}}.length > 0) {
+                this.{{nameCamelCase}}.forEach((item) => {
                     if (item) {
                         if (categories && categories.length > 0) {
                             categories.forEach((category) => {
@@ -82,7 +83,7 @@ path: frontend/src/components
                     }
                 });
             }
-            {{/options.ui}}
+            {{/options.view}}
         },
         methods: {
         }
@@ -91,8 +92,8 @@ path: frontend/src/components
 
 
 <function>
-    let ui = this.attached.find((ele) => ele._type.includes("UI"));
-    options.ui = ui;
+    let view = this.attached.find((ele) => ele._type.includes("View"));
+    options.view = view;
 
     window.$HandleBars.registerHelper('setFieldMapping', function (fields) {
         let text = "[ ";
