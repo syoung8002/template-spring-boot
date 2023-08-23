@@ -124,7 +124,7 @@ path: frontend/src/components
     options.view = view;
 
     window.$HandleBars.registerHelper('isPieChart', function (type) {
-        if (type.includes("pie") || type.includes("donut")) {
+        if (type.includes("pie")) {
             return true;
         } else {
             return false;

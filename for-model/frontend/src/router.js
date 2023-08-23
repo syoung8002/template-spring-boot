@@ -17,10 +17,10 @@ import {{boundedContext.namePascalCase}}{{namePascalCase}}Manager from "./compon
 import {{boundedContext.namePascalCase}}{{namePascalCase}}Detail from "./components/listers/{{boundedContext.namePascalCase}}{{namePascalCase}}Detail"
     {{/aggregates}}
 
-    {{#viewes}}
+    {{#views}}
 import {{namePascalCase}}View from "./components/{{namePascalCase}}View"
 import {{namePascalCase}}ViewDetail from "./components/{{namePascalCase}}ViewDetail"
-    {{/viewes}}
+    {{/views}}
 {{/boundedContexts}}
 
 export default new Router({
@@ -41,7 +41,7 @@ export default new Router({
             },
         {{/aggregates}}
 
-        {{#viewes}}
+        {{#views}}
             {
                 path: '/{{namePlural}}',
                 name: '{{namePascalCase}}View',
@@ -52,7 +52,7 @@ export default new Router({
                 name: '{{namePascalCase}}ViewDetail',
                 component: {{namePascalCase}}ViewDetail
             },
-        {{/viewes}}
+        {{/views}}
        {{/boundedContexts}}
 
 
