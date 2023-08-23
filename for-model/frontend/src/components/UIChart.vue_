@@ -1,6 +1,7 @@
 forEach: UI
 fileName: {{namePascalCase}}Chart.vue
 path: frontend/src/components
+except: {{#ifEquals uiType "Chart"}}false{{else}}true{{/ifEquals}}
 ---
 <template>
     <div>
