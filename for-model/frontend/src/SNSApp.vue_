@@ -63,7 +63,7 @@ fileName: SNSApp.vue
 
     		    {{/aggregates}}
 
-    		    {{#viewes}}
+    		    {{#views}}
                     <v-list-item
                             class="px-2"
                             key="{{namePlural}}"
@@ -74,7 +74,7 @@ fileName: SNSApp.vue
                     >
                         {{namePascalCase}}
                     </v-list-item>
-    		    {{/viewes}}
+    		    {{/views}}
 		    {{/boundedContexts}}
                 </v-list>
             </v-navigation-drawer>

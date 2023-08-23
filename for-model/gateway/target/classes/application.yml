@@ -12,7 +12,7 @@ spring:
         - id: {{name}}
           uri: http://localhost:{{portGenerated}}
           predicates:
-            - Path={{#printRoute aggregates}}{{/printRoute}}, {{#printRouteView viewes}}{{/printRouteView}}{{#each aggregates}}{{#each aggregateRoot.entities.relations}}{{#if (isGeneralization targetElement.namePascalCase ../namePascalCase relationType)}}, /{{#toURL sourceElement.nameCamelCase}}{{/toURL}}/**{{/if}}{{/each}}{{/each}}
+            - Path={{#printRoute aggregates}}{{/printRoute}}, {{#printRouteView views}}{{/printRouteView}}{{#each aggregates}}{{#each aggregateRoot.entities.relations}}{{#if (isGeneralization targetElement.namePascalCase ../namePascalCase relationType)}}, /{{#toURL sourceElement.nameCamelCase}}{{/toURL}}/**{{/if}}{{/each}}{{/each}}
         {{/boundedContexts}}
         - id: frontend
           uri: http://localhost:8080
@@ -41,7 +41,7 @@ spring:
         - id: {{name}}
           uri: http://{{nameCamelCase}}:8080
           predicates:
-            - Path={{#printRoute aggregates}}{{/printRoute}}, {{#printRouteView viewes}}{{/printRouteView}}{{#each aggregates}}{{#each aggregateRoot.entities.relations}}{{#if (isGeneralization targetElement.namePascalCase ../namePascalCase relationType)}}, /{{#toURL sourceElement.nameCamelCase}}{{/toURL}}/**{{/if}}{{/each}}{{/each}}
+            - Path={{#printRoute aggregates}}{{/printRoute}}, {{#printRouteView views}}{{/printRouteView}}{{#each aggregates}}{{#each aggregateRoot.entities.relations}}{{#if (isGeneralization targetElement.namePascalCase ../namePascalCase relationType)}}, /{{#toURL sourceElement.nameCamelCase}}{{/toURL}}/**{{/if}}{{/each}}{{/each}}
         {{/boundedContexts}}
         - id: frontend
           uri: http://frontend:8080
@@ -82,17 +82,17 @@ server:
     }
   });
 
-  window.$HandleBars.registerHelper('printRouteView', function (viewes) {
+  window.$HandleBars.registerHelper('printRouteView', function (views) {
     try{
-      if(!viewes)
+      if(!views)
           return;
         var route = "";
-        for(var i = 0; i<viewes.length; i++){
-          if(i == viewes.length-1){
-            route = route + "/" + viewes[i].namePlural + "/**"
+        for(var i = 0; i<views.length; i++){
+          if(i == views.length-1){
+            route = route + "/" + views[i].namePlural + "/**"
           }
           else{
-            route = route + "/" +viewes[i].namePlural + "/**, "
+            route = route + "/" +views[i].namePlural + "/**, "
           }
         }
 
