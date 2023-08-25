@@ -30,8 +30,8 @@ except: {{contexts.isNotGrid}}
                     value: '{{this}}'
                 },
             {{/grid.columns}}
-            ]
-            {{nameCamelCase}}: [],
+            ],
+            value: [],
             {{#options.view}}
             {{nameCamelCase}}: [],
             {{/options.view}}
@@ -44,8 +44,6 @@ except: {{contexts.isNotGrid}}
             
             this.{{nameCamelCase}} = temp.data._embedded.{{namePlural}};
             {{/options.view}}
-
-            this.{{nameCamelCase}}
         },
         methods: {
         }
