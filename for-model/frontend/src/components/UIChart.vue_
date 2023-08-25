@@ -19,14 +19,10 @@ except: {{contexts.isNotChart}}
     import VueApexCharts from 'vue-apexcharts';
     const axios = require('axios').default;
 
-
     export default {
         name: '{{namePascalCase}}Chart',
         components: {
             'apexchart': VueApexCharts,
-        },
-        props: {
-            value: Object
         },
         data: () => ({
             type: "{{chart.type}}",

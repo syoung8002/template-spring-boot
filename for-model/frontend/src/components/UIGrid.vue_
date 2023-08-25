@@ -19,9 +19,6 @@ except: {{contexts.isNotGrid}}
 
     export default {
         name: '{{namePascalCase}}Grid',
-        props: {
-            value: Object
-        },
         data: () => ({
             headers: [
             {{#grid.columns}}
@@ -31,7 +28,7 @@ except: {{contexts.isNotGrid}}
                 },
             {{/grid.columns}}
             ],
-            value: [],
+            {{nameCamelCase}}: [],
             {{#options.view}}
             {{nameCamelCase}}: [],
             {{/options.view}}
@@ -43,6 +40,12 @@ except: {{contexts.isNotGrid}}
             temp.data._embedded.{{namePlural}}.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1]);
             
             this.{{nameCamelCase}} = temp.data._embedded.{{namePlural}};
+
+            var obj = {}
+            this.headers.forEach((item) => {
+                obj[item.value] = this.{{nameCamelCase}}[item.value]
+            });
+            this.{{../nameCamelCase}}.push(obj);
             {{/options.view}}
         },
         methods: {
