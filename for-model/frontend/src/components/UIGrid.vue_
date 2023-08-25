@@ -39,13 +39,7 @@ except: {{contexts.isNotGrid}}
 
             temp.data._embedded.{{namePlural}}.map(obj => obj.id=obj._links.self.href.split("/")[obj._links.self.href.split("/").length - 1]);
             
-            this.{{nameCamelCase}} = temp.data._embedded.{{namePlural}};
-
-            var obj = {}
-            this.headers.forEach((item) => {
-                obj[item.value] = this.{{nameCamelCase}}[item.value]
-            });
-            this.{{../nameCamelCase}}.push(obj);
+            this.{{../nameCamelCase}} = temp.data._embedded.{{namePlural}};
             {{/options.view}}
         },
         methods: {
