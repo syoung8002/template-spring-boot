@@ -1,7 +1,7 @@
 forEach: UI
 fileName: {{namePascalCase}}Chart.vue
 path: frontend/src/components
-except: {{#ifEquals uiType "Chart"}}false{{else}}true{{/ifEquals}}
+except: {{contexts.isNotChart}}
 ---
 <template>
     <div>
@@ -18,6 +18,7 @@ except: {{#ifEquals uiType "Chart"}}false{{else}}true{{/ifEquals}}
 <script>
     import VueApexCharts from 'vue-apexcharts';
     const axios = require('axios').default;
+
 
     export default {
         name: '{{namePascalCase}}Chart',
@@ -121,6 +122,8 @@ except: {{#ifEquals uiType "Chart"}}false{{else}}true{{/ifEquals}}
 
 
 <function>
+    this.contexts.isNotChart = this.uiType!="Chart"
+
     let view = this.attached.find((ele) => ele._type.includes("View"));
     options.view = view;
 

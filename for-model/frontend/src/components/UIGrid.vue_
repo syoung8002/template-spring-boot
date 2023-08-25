@@ -1,10 +1,16 @@
 forEach: UI
 fileName: {{namePascalCase}}Grid.vue
 path: frontend/src/components
-except: {{#ifEquals uiType "Grid"}}false{{else}}true{{/ifEquals}}
+except: {{contexts.isNotGrid}}
 ---
 <template>
     <div>
+        <v-data-table
+                :headers="headers"
+                :items="{{nameCamelCase}}"
+                :items-per-page="5"
+                class="elevation-1"
+        ></v-data-table>
     </div>
 </template>
 
@@ -17,6 +23,15 @@ except: {{#ifEquals uiType "Grid"}}false{{else}}true{{/ifEquals}}
             value: Object
         },
         data: () => ({
+            headers: [
+            {{#grid.columns}}
+                {
+                    text: '{{this}}',
+                    value: '{{this}}'
+                },
+            {{/grid.columns}}
+            ]
+            {{nameCamelCase}}: [],
             {{#options.view}}
             {{nameCamelCase}}: [],
             {{/options.view}}
@@ -29,6 +44,8 @@ except: {{#ifEquals uiType "Grid"}}false{{else}}true{{/ifEquals}}
             
             this.{{nameCamelCase}} = temp.data._embedded.{{namePlural}};
             {{/options.view}}
+
+            this.{{nameCamelCase}}
         },
         methods: {
         }
@@ -37,6 +54,8 @@ except: {{#ifEquals uiType "Grid"}}false{{else}}true{{/ifEquals}}
 
 
 <function>
+    this.contexts.isNotGrid = this.uiType!="Grid"
+
     let view = this.attached.find((ele) => ele._type.includes("View"));
     options.view = view;
 
